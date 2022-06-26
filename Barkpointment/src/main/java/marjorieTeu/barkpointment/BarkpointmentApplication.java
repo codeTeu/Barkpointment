@@ -8,6 +8,7 @@ public class BarkpointmentApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(BarkpointmentApplication.class, args);
+		
 	}
 
 }

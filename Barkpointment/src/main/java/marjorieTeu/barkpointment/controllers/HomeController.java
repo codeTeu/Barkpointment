@@ -4,7 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class homeController {
+public class HomeController {
 
 	@GetMapping("/")
 	public String goHome() {
@@ -29,23 +29,35 @@ public class homeController {
 
 	@GetMapping("/profile")
 	public String goProfile() {
-		return "profile";
+		return "secured/profile";
 	}
 	
 
 	@GetMapping("/pets")
 	public String goPets() {
-		return "pets";
+		return "secured/pets";
 	}
 
 	@GetMapping("/petsAdd")
 	public String goPetsAdd() {
-		return "petsAdd";
+		return "secured/petsAdd";
 	}
 
 
-	@GetMapping("/petsVisits")
+	
+	@GetMapping("/visits")
 	public String goVisits() {
-		return "visits";
+		return "secured/visits";
+	}
+	
+	@GetMapping("/aptAdd")
+	public String goAptAdd() {
+		return "secured/aptAdd";
+	}
+	
+	
+	@GetMapping("/admin")
+	public String goAdmin() {
+		return "secured/admin/admin";
 	}
 }
