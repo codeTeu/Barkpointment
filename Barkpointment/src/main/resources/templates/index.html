@@ -6,16 +6,95 @@
 </head>
 
 <body>
-    <h1>test</h1>
-    <a href="/login">Login</a><br>
-    <a href="/faq">FAQ</a><br>
-    <a href="/register">Resigter</a><br>
-    <a href="/profile">Profile</a><br>
-    <a href="/pets">Pets</a><br>
-    <a href="/petsAdd">Pets Add</a><br>
-    <a href="/visits">Visits</a><br>
-    <a href="/aptAdd">Appointment Add</a><br>
-    <a href="/admin">Admin</a><br>
+    <header th:replace="fragments/header"></header>
+    
+        <div>
+
+            <div class="carousel carousel-dark slide" data-bs-ride="carousel">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#carousel" data-bs-slide-to="0" class="active"
+                        aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#carousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                </div>
+
+                <div class="carousel-inner bg-secondary">
+                    <div class="carousel-item active">
+                        <img src="../images/carousel1.jpg" class="d-block w-100" alt="carousel1">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="../images/carousel2.jpg" class="d-block w-100" alt="carousel2">
+                    </div>
+                </div>
+
+                <button class="carousel-control-prev" type="button" data-bs-target="#carousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+
+                <button class="carousel-control-next" type="button" data-bs-target="#carousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div> <!-- end of carousel -->
+
+
+            <form action="#" method="get">
+                <div id="date-container" class="bg-info p-3 text-white text-center px-5">
+                    <p id="date-question" class="font__mon-exbold mb-2 d-md-inline-block px-3">
+                        When would you like to visit?
+                    </p>
+                    <input id="appt-date" type="date" name="date" value="" class="border-0 p-2 text-center bg-white">
+                </div> <!-- end of date -->
+
+                <!-- script: assign time to this element on btn click  -->
+                <input type="hidden" id="appt-time" name="appt-time" value="">
+
+                <div id="time-container" class="p-4 text-center d-flex">
+
+                    <div class="w-75">
+                    </div> <!-- end of col1 -->
+
+                    <div class="w-100">
+                        <ul class="list-unstyled m-0 colcount">
+                            <li>
+                                <input type="submit" value="10:00 AM"
+                                    class="btn btn-outline-info px-4 py-2 rounded-0 m-2">
+                            </li>
+                            <li>
+                                <input type="submit" value="11:00 AM"
+                                    class="btn btn-outline-info px-4 py-2 rounded-0 m-2">
+                            </li>
+                            <li>
+                                <input type="submit" value="12:00 AM"
+                                    class="btn btn-outline-info px-4 py-2 rounded-0 m-2">
+                            </li>
+                            <li>
+                                <input type="submit" value="01:00 PM"
+                                    class="btn btn-outline-info px-4 py-2 rounded-0 m-2">
+                            </li>
+                            <li>
+                                <input type="submit" value="02:00 PM"
+                                    class="btn btn-outline-info px-4 py-2 rounded-0 m-2">
+                            </li>
+                            <li>
+                                <input type="submit" value="03:00 PM"
+                                    class="btn btn-outline-info px-4 py-2 rounded-0 m-2">
+                            </li>
+                        </ul>
+                    </div> <!-- end of col2 -->
+
+                    <div class="w-75">
+                    </div> <!-- end of col3 -->
+
+                </div> <!-- end of time-container -->
+
+            </form> <!-- end of form -->
+
+        </div>
+
+        <footer th:replace="fragments/footer"></footer>
+
 </body>
+
 
 </html>
