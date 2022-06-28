@@ -1,18 +1,11 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org">
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <link rel="stylesheet" href="style.css">
-    <script src="static/js/bootstrap.js"></script>
-    <script src="static/js/jquery.js"></script>
-
-    <title>Barkpointment</title>
+<head th:replace="fragments/head :: frag_head(~{::title})">
+    <title>Barkpointment | Home</title>
 </head>
 
+<body>
     <h1>test</h1>
     <a href="/login">Login</a><br>
     <a href="/faq">FAQ</a><br>
