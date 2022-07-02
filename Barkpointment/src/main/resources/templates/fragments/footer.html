@@ -1,20 +1,30 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org">
 <head th:replace="fragments/head :: frag_head(~{::title})">
-    <title>Barkpointment | footer</title>
+<title>Barkpointment | footer</title>
 </head>
 <body>
 
-	<footer th:fragment="frag_footer" class="bg-info p-4 text-white text-center">
-		<p class="m-0  d-md-inline-block">Copyright &copy; 2022 Marjorie Teu. </p>
-		<p class="m-0  d-md-inline-block">All Rights Reserved.</p>
-		
-		<!-- scripts -->
-<!-- 		<script src="../../static/js/bootstrap.js"></script>
-		<script src="../../static/js/jquery.js"></script> -->
+	<footer th:fragment="frag_footer_dark" class="bg-info p-4 text-white text-center">
+		<div th:replace="fragments/footer :: frag_footer_info"></div>
 	</footer>
-	
-	
+
+	<footer th:fragment="frag_footer_light" class="bg-white p-4 text-black text-center">
+		<div th:replace="fragments/footer :: frag_footer_info"></div>
+	</footer>
+
+
+	<div th:fragment="frag_footer_info">
+
+		<p class="m-0  d-md-inline-block">Copyright &copy; 2022 Marjorie
+			Teu.</p>
+		<p class="m-0  d-md-inline-block">All Rights Reserved.</p>
+
+		<!-- scripts -->
+		<script src="js/bootstrap.js"></script>
+		<script src="js/jquery.js"></script>
+	</div>
+
 </body>
 
 </html>

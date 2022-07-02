@@ -2,97 +2,61 @@
 <html lang="en" xmlns:th="https://www.thymeleaf.org">
 
 <head th:replace="fragments/head :: frag_head(~{::title})">
-    <title>Barkpointment | Home</title>
+<title>Barkpointment | Home</title>
 </head>
 
 <body>
-    <header th:replace="fragments/header"></header>
-    
-        <div>
+	<header th:replace="fragments/header"></header>
 
-            <div class="carousel carousel-dark slide" data-bs-ride="carousel">
-                <div class="carousel-indicators">
-                    <button type="button" data-bs-target="#carousel" data-bs-slide-to="0" class="active"
-                        aria-current="true" aria-label="Slide 1"></button>
-                    <button type="button" data-bs-target="#carousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                </div>
+	<div th:replace="fragments/carousel"></div>
 
-                <div class="carousel-inner bg-secondary">
-                    <div class="carousel-item active">
-                        <img src="../images/carousel1.jpg" class="d-block w-100" alt="carousel1">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="../images/carousel2.jpg" class="d-block w-100" alt="carousel2">
-                    </div>
-                </div>
+	<form action="#" method="get">
+		<div id="date-container"
+			class="bg-info p-3 text-white text-center px-5">
+			<p id="date-question"
+				class="font__mon-exbold mb-2 d-md-inline-block px-3">When would
+				you like to visit?</p>
+			<input id="appt-date" type="date" name="date" value=""
+				class="border-0 p-2 text-center bg-white">
+		</div>
+		<!-- end of date -->
 
-                <button class="carousel-control-prev" type="button" data-bs-target="#carousel" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
+		<!-- script: assign time to this element on btn click  -->
+		<input type="hidden" id="appt-time" name="appt-time" value="">
 
-                <button class="carousel-control-next" type="button" data-bs-target="#carousel" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
-            </div> <!-- end of carousel -->
+		<div id="time-container" class="p-4 text-center d-flex">
 
+			<div class="w-75"></div>
+			<!-- end of col1 -->
 
-            <form action="#" method="get">
-                <div id="date-container" class="bg-info p-3 text-white text-center px-5">
-                    <p id="date-question" class="font__mon-exbold mb-2 d-md-inline-block px-3">
-                        When would you like to visit?
-                    </p>
-                    <input id="appt-date" type="date" name="date" value="" class="border-0 p-2 text-center bg-white">
-                </div> <!-- end of date -->
+			<div class="w-100 colcount-2">
+				<ul class="list-unstyled m-0 colcount">
+					<li><input type="submit" value="10:00 AM"
+						class="btn btn-outline-info px-4 py-2 rounded-0 m-2"></li>
+					<li><input type="submit" value="11:00 AM"
+						class="btn btn-outline-info px-4 py-2 rounded-0 m-2"></li>
+					<li><input type="submit" value="12:00 AM"
+						class="btn btn-outline-info px-4 py-2 rounded-0 m-2"></li>
+					<li><input type="submit" value="01:00 PM"
+						class="btn btn-outline-info px-4 py-2 rounded-0 m-2"></li>
+					<li><input type="submit" value="02:00 PM"
+						class="btn btn-outline-info px-4 py-2 rounded-0 m-2"></li>
+					<li><input type="submit" value="03:00 PM"
+						class="btn btn-outline-info px-4 py-2 rounded-0 m-2"></li>
+				</ul>
+			</div>
+			<!-- end of col2 -->
 
-                <!-- script: assign time to this element on btn click  -->
-                <input type="hidden" id="appt-time" name="appt-time" value="">
+			<div class="w-75"></div>
+			<!-- end of col3 -->
 
-                <div id="time-container" class="p-4 text-center d-flex">
+		</div>
+		<!-- end of time-container -->
 
-                    <div class="w-75">
-                    </div> <!-- end of col1 -->
-
-                    <div class="w-100">
-                        <ul class="list-unstyled m-0 colcount">
-                            <li>
-                                <input type="submit" value="10:00 AM"
-                                    class="btn btn-outline-info px-4 py-2 rounded-0 m-2">
-                            </li>
-                            <li>
-                                <input type="submit" value="11:00 AM"
-                                    class="btn btn-outline-info px-4 py-2 rounded-0 m-2">
-                            </li>
-                            <li>
-                                <input type="submit" value="12:00 AM"
-                                    class="btn btn-outline-info px-4 py-2 rounded-0 m-2">
-                            </li>
-                            <li>
-                                <input type="submit" value="01:00 PM"
-                                    class="btn btn-outline-info px-4 py-2 rounded-0 m-2">
-                            </li>
-                            <li>
-                                <input type="submit" value="02:00 PM"
-                                    class="btn btn-outline-info px-4 py-2 rounded-0 m-2">
-                            </li>
-                            <li>
-                                <input type="submit" value="03:00 PM"
-                                    class="btn btn-outline-info px-4 py-2 rounded-0 m-2">
-                            </li>
-                        </ul>
-                    </div> <!-- end of col2 -->
-
-                    <div class="w-75">
-                    </div> <!-- end of col3 -->
-
-                </div> <!-- end of time-container -->
-
-            </form> <!-- end of form -->
-
-        </div>
-
-        <footer th:replace="fragments/footer"></footer>
+	</form>
+	<!-- end of form -->
+	
+	<footer th:replace="fragments/footer :: frag_footer_dark"></footer>
 
 </body>
 
