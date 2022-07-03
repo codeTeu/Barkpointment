@@ -5,15 +5,17 @@
 </head>
 <body>
 
-	<footer th:fragment="frag_footer_dark" class="bg-info p-4 text-white text-center">
+	<!-- option: footer dark  -->
+	<footer th:fragment="frag_footer_dark" class="bg-info p-4 text-white text-center fixed-bottom">
 		<div th:replace="fragments/footer :: frag_footer_info"></div>
 	</footer>
 
-	<footer th:fragment="frag_footer_light" class="bg-white p-4 text-black text-center">
+	<!-- option: footer light  -->
+	<footer th:fragment="frag_footer_light" class="bg-white p-4 text-black text-center fixed-bottom">
 		<div th:replace="fragments/footer :: frag_footer_info"></div>
 	</footer>
 
-
+	<!-- option: footer info  -->
 	<div th:fragment="frag_footer_info">
 
 		<p class="m-0  d-md-inline-block">Copyright &copy; 2022 Marjorie
@@ -23,6 +25,7 @@
 		<!-- scripts -->
 		<script src="js/bootstrap.js"></script>
 		<script src="js/jquery.js"></script>
+		<script src="js/script.js"></script>
 	</div>
 
 </body>

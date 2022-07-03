@@ -2,18 +2,133 @@
 <html lang="en" xmlns:th="https://www.thymeleaf.org">
 
 <head th:replace="fragments/head :: frag_head(~{::title})">
-<title>Barkpointment | Login</title>
+	<title>Barkpointment | Login</title>
+	<link rel="stylesheet" href="../static/css/bootstrap.css">
+	<link rel="stylesheet" href="../static/css/style.css">
+
 </head>
 
-<body>
-	<header th:replace="fragments/header"></header>
+<body class="bg__cover bg__login">
 
-	<div class="bg-">
-	
+	<header th:replace="fragments/header :: frag_header_logo"></header>
+
+	<div class="full-height bg__cover bg__login ">
+
+		<!-- column 1-->
+		<div class="p-5 d-md-inline-block ">
+			<!-- sys message -->
+			<div id="sys-message" class="sys_message__alert">
+				<span>System Message</span>
+			</div>
+
+			<!-- login card-->
+			<form class="p-5 shadow bg-white text-secondary" action="#" method="post">
+				<p class="form__title">Login Form</p>
+				<br />
+				<div id="login-info">
+					<div class="form-floating">
+						<input type="email" class="form-control" id="emailID" value="asd" placeholder="name@example.com" required>
+						<label for="email">Email</label>
+					</div>
+
+					<div class="form-floating">
+						<input type="password" class="form-control" id="passID" placeholder="Password" value="asd"required>
+						<label for="password">Password</label>
+					</div>
+
+					<div class="form-check">
+						<input type="checkbox" id="remMeID" value="remember-me" class="form-check-input">
+						<label class="form-check-label" for="remember-me">Remember me</label>
+						<br>
+						<br>
+					</div>
+
+					<button id="submit" type="submit" class="w-100 btn btn-lg btn-info text-white">
+						login
+					</button>
+				</div> <!-- end of login-info -->
+
+				<hr />
+
+				<div class="text-center">
+					Don’t have an account?
+					<a href="#" th:href="@{/register}" class="link-info">Create one</a>
+					<br />
+					<a href="#" class="link-info">Forgot password</a>
+
+				</div>
+
+			</form> <!-- end of login form -->
+
+		</div>
+
+
+
+
+
+
+		<!-- 
+<main class="background background__cover background__cover__login d-md-flex">
+
+		<div id="login-container" class="p-5 w-100">
+			<div id="sys-message" class="border border-danger text-danger p-2 mb-4 text-center">
+				<p class="m-0">
+					system message here
+					script: system message here
+				</p>
+			</div>
+
+			<form id="login-form" class="p-5 shadow bg-white text-secondary" action="#" method="post">
+				<p class="form__title">Login Form</p>
+				<br />
+				<div id="login-info">
+					<div class="form-floating">
+						<input type="email" class="form-control" id="email" placeholder="name@example.com" required>
+						<label for="email" class="">Email</label>
+					</div>
+
+					<div class="form-floating">
+						<input type="password" class="form-control" id="password" placeholder="Password" required>
+						<label for="password" class="">Password</label>
+					</div>
+
+					<div class="form-check">
+						<input type="checkbox" id="remember-me" value="remember-me" class="form-check-input">
+						<label class="form-check-label" for="remember-me">Remember me</label>
+					</div>
+
+					<button id="submit" type="submit" class="w-100 btn btn-lg btn-info text-white">
+						login
+					</button>
+				</div> end of login-info
+
+				<hr />
+				<div class="text-center">
+					<small>
+						Don’t have an account?
+						<a href="#" th:href="@{/register}" class="link-info">Create one</a>
+						<br />
+						<a href="#" class="link-info">Forgot password</a>
+					</small>
+				</div>
+			</form> end of login form
+			<br />
+			<br />
+			<br />
+			<br />
+		</div> end of col1: login-container
+
+		<div class="w-100">
+
+		</div> end of col2: spacing
+
+	</main> end of main
+	 -->
 	</div>
 	<footer th:insert="fragments/footer :: frag_footer_light"></footer>
 
 
 
 </body>
+
 </html>

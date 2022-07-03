@@ -6,15 +6,16 @@
 </head>
 
 <body>
-	<header th:replace="fragments/header"></header>
 
-	<div th:replace="fragments/carousel"></div>
+	<header th:replace="fragments/header :: frag_header(links='li.public')"></header>
+
+	<div th:replace="fragments/carousel :: frag_carousel"></div>
 
 	<form action="#" method="get">
 		<div id="date-container"
 			class="bg-info p-3 text-white text-center px-5">
 			<p id="date-question"
-				class="font__mon-exbold mb-2 d-md-inline-block px-3">When would
+				class="font__mon_exbold mb-2 d-md-inline-block px-3">When would
 				you like to visit?</p>
 			<input id="appt-date" type="date" name="date" value=""
 				class="border-0 p-2 text-center bg-white">
@@ -55,7 +56,7 @@
 
 	</form>
 	<!-- end of form -->
-	
+
 	<footer th:replace="fragments/footer :: frag_footer_dark"></footer>
 
 </body>

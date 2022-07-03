@@ -6,30 +6,39 @@
 <body>
 
 
+	<header th:fragment="frag_header_logo">
+		<nav class="navbar navbar-light bg-light">
+			<a class="navbar-brand m-auto" href="#" th:href="@{/}">
+				<img src="../images/barkpointment_logo.svg" alt="barkpointment_logo" class="w-100">
+			</a>
+		</nav>
+	</header>
+
 	<header th:fragment="frag_header(links)">
-		<nav class="navbar navbar-expand-md navbar-light bg-light px-4 py-2 font__mon-med">
+		<nav class="navbar navbar-expand-md navbar-light bg-light px-4 py-2 font__mon_med">
 			<a class="navbar-brand" href="#" th:href="@{/}">
 				<img src="../images/barkpointment_logo.svg" alt="barkpointment_logo" class="w-100">
 			</a>
 
-			<button type="button" class="navbar-toggler rounded-0 bg-transparent border-0" data-bs-toggle="collapse"
-				data-bs-target="#navbar">
-				<span class="navbar-toggler-icon"></span>
-			</button>
+				<button type="button" class="navbar-toggler rounded-0 bg-transparent border-0" data-bs-toggle="collapse"
+					data-bs-target="#navbar">
+					<span class="navbar-toggler-icon"></span>
+				</button>
 
-			<div id="navbar" class="navbar-collapse collapse text-center ">
-				<ul class="navbar-nav m-auto me-0">
-					<li class="nav-item public"><a class="nav-link"  href="#" th:href="@{/login}">LOGIN</a></li>
-					<li class="nav-item private"><a class="nav-link"  href="#" th:href="@{/profile}">PROFILE</a></li>
-					<li class="nav-item public"><a class="nav-link" href="#" th:href="@{/register}">REGISTER</a></li>
-					<li class="nav-item private"><a class="nav-link" href="#" th:href="@{/pets}">PETS</a></li>
-					<li class="nav-item admin"><a class="nav-link" href="#" th:href="@{/admin}">ADMIN</a></li>
-					<li class="nav-item private"><a class="nav-link" href="#" th:href="@{/petsAdd}">PETSADD</a></li>
-					<li class="nav-item private"><a class="nav-link" href="#" th:href="@{/aptAdd}">APPT ADD</a></li>
-					<li class="nav-item public"><a class="nav-link" href="#" th:href="@{/visits}">VISITS</a></li>
-					<li class="nav-item public"><a class="nav-link" href="#" th:href="@{/faq}">FAQ</a></li>
-				</ul>
-			</div>
+				<div id="navbar" class="navbar-collapse collapse text-center ">
+					<ul class="navbar-nav m-auto me-0">
+					
+						<li class="nav-item public"><a class="nav-link"  href="#" th:href="@{/login}">LOGIN</a></li>
+						<li class="nav-item private"><a class="nav-link"  href="#" th:href="@{/profile}">PROFILE</a></li>
+						<li class="nav-item public"><a class="nav-link" href="#" th:href="@{/register}">REGISTER</a></li>
+						<li class="nav-item private"><a class="nav-link" href="#" th:href="@{/pets}">PETS</a></li>
+						<li class="nav-item admin"><a class="nav-link" href="#" th:href="@{/admin}">ADMIN</a></li>
+						<li class="nav-item private"><a class="nav-link" href="#" th:href="@{/petsAdd}">PETSADD</a></li>
+						<li class="nav-item private"><a class="nav-link" href="#" th:href="@{/aptAdd}">APPT ADD</a></li>
+						<li class="nav-item public"><a class="nav-link" href="#" th:href="@{/visits}">VISITS</a></li>
+						<li class="nav-item public"><a class="nav-link" href="#" th:href="@{/faq}">FAQ</a></li>
+					</ul>
+				</div>
 		</nav>
 	</header> <!-- end of header -->
 
