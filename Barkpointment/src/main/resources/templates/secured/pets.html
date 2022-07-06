@@ -2,9 +2,56 @@
 <html lang="en" xmlns:th="https://www.thymeleaf.org">
 
 <head th:replace="fragments/head :: frag_head(~{::title})">
-    <title>Barkpointment | Pets</title>
+<title>Barkpointment | Pets</title>
 </head>
 <body>
+	<header th:replace="fragments/header :: frag_header_public"></header>
 
-	<footer th:replace="fragments/footer"></footer>
+	<div th:replace="fragments/titleBar :: frag_titleBar('pets')"></div>
+
+	<div class="py-4 table-responsive-lg">
+
+
+
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th scope="col">Pet#</th>
+					<th scope="col">Photo</th>
+					<th scope="col">Name</th>
+					<th scope="col">Gender</th>
+					<th scope="col">Breed</th>
+					<th scope="col">Birthday</th>
+					<th scope="col">Owner#</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<th scope="row">1</th>
+					<td>photo</td>
+					<td>Bolt</td>
+					<td>M</td>
+					<td>Shiba Inu</td>
+					<td>1990-08-34</td>
+					<td>234</td>
+				</tr>
+				<tr>
+					<th scope="row">2</th>
+					<td>photo</td>
+					<td>Jacob</td>
+					<td>Thornton</td>
+					<td>@fat</td>
+				</tr>
+				<tr>
+					<th scope="row">3</th>
+					<td>Larry</td>
+					<td>the Bird</td>
+					<td>@twitter</td>
+				</tr>
+			</tbody>
+		</table>
+
+	</div>
+
+	<footer th:replace="fragments/footer :: frag_footer_dark"></footer>
 </body>

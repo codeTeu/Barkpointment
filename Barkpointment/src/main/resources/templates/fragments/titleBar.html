@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head th:replace="fragments/head :: frag_head(~{::title})">
+<title>Barkpointment | titleBar</title>
+</head>
+<body>
+
+	<div th:fragment="frag_titleBar(title)" class="bg-info p-4 text-white text-center fs-3">
+		<p th:text="${title.toUpperCase()}" class="m-0">TITLE BAR DEFAULT</p>
+	</div>
+
+</body>
+
+</html>
+

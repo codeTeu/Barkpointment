@@ -6,9 +6,9 @@
 </head>
 
 <body>
-	<header th:replace="fragments/header"></header>
+	<header th:replace="fragments/header :: frag_header_public"></header>
 
-	<div th:replace="fragments/carousel"></div>
+	<div th:replace="fragments/carousel :: frag_carousel"></div>
 
 	<div class="p-5">
 		<h1 class="color-dark text-center">FAQ</h1>
@@ -97,5 +97,5 @@
 	</div>
 	<!-- end of accordion section -->
 
-	<footer th:replace="fragments/footer"></footer>
+	<footer th:replace="fragments/footer :: frag_footer_dark"></footer>
 </body>
