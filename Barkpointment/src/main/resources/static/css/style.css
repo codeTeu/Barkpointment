@@ -23,7 +23,8 @@ light brown:f2edea;     //login bg
 /**************************************************
     GENERAL 
 **************************************************/
-html, body {
+html,
+body {
 	font-family: Montserrat;
 	height: 100%;
 }
@@ -106,8 +107,12 @@ html, body {
 	font-size: large;
 }
 
-form input[type="text"], form input[type="tel"], form input[type="email"],
-	form input[type="password"], form input[type="date"], form select {
+form input[type="text"],
+form input[type="tel"],
+form input[type="email"],
+form input[type="password"],
+form input[type="date"],
+form select {
 	width: 100% !important;
 	background-color: #f5f5f5 !important;
 	border: none !important;
@@ -115,7 +120,8 @@ form input[type="text"], form input[type="tel"], form input[type="email"],
 	margin: 10px 0px;
 }
 
-select, input[type="date"] {
+select,
+input[type="date"] {
 	cursor: pointer;
 }
 
@@ -135,15 +141,112 @@ button {
 }
 
 /**************************************************
-    photo avatar 
-**************************************************/
-#preview-container {
-	background-image: url('../../images/defaultAvatar.svg');
-	background-repeat: no-repeat;
-	background-size: cover;
-	background-position: center;
+    add pet
+/* **************************************************/
+
+#form__addPet #photoUploadBtn {
+	display: none;
+}
+
+#form__addPet #data {
+	grid-area: data;
+}
+
+#form__addPet #name {
+	grid-area: name;
+}
+
+#form__addPet #gender {
+	grid-area: gender;
+}
+
+#form__addPet #breed {
+	grid-area: breed;
+}
+
+#form__addPet #bday {
+	grid-area: bday;
+}
+
+#form__addPet #addBtn {
+	grid-area: addBtn;
+}
+
+#form__addPet #gridContainer {
+	display: grid;
+	grid-template-columns: auto auto;
+	grid-template-columns: 1fr 2fr;
+	grid-template-rows: auto;
+	grid-template-areas:
+		"photo data";
 }
 
 
 
+#form__addPet #gridContainer>#photo {
+	grid-area: photo;
+	background-image: url('../images/defaultAvatar.svg');
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+	background-color: antiquewhite;
+	text-align: right;
+}
 
+
+
+#form__addPet #data {
+	display: grid;
+	grid-template-columns: auto auto;
+	grid-template-columns: 1fr 1fr;
+	grid-template-rows: auto;
+	grid-template-areas:
+		"name gender"
+		"bday breed"
+		"addBtn addBtn";
+}
+
+#form__addPet #data>div {
+	display: flex;
+	align-items: center;
+}
+
+#form__addPet #data,
+#form__addPet #data>div {
+	gap: 10px;
+}
+
+#form__addPet #data>div>img {
+	height: 30px;
+}
+
+/* @media (max-width: 800px) {
+	#form__addPet #photo {
+		height: 500px;
+	}
+
+	#form__addPet #gridContainer {
+		grid-template-columns: 1fr;
+		grid-template-areas:
+			"photo"
+			"data";
+	}
+} */
+
+@media (max-width: 800px) {
+	#form__addPet #gridContainer {
+		grid-template-columns: 1fr;
+		grid-template-areas:
+			"photo"
+			"data";
+	}
+/* 	#form__addPet #data {
+		grid-template-columns: 1fr;
+		grid-template-areas:
+			"name"
+			"gender"
+			"bday"
+			"breed"
+			"addBtn";
+	} */
+}
