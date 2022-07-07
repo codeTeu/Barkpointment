@@ -10,22 +10,47 @@ $(document).ready(
 
 
 		rememberMe();
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+
+
+
+		/**************************************************
+	  		changes the photo preview on upload
+   		**************************************************/
+
+		function readURL(input) {
+			if (input.files && input.files[0]) {
+				var reader = new FileReader();
+				reader.onload = function(e) {
+					$('#preview-container').css('background-image', 'url(' + e.target.result + ')');
+					$('#preview-container').hide();
+					$('#preview-container').fadeIn(650);
+				}
+				reader.readAsDataURL(input.files[0]);
+			}
+		}
+		$("#photo-upload-btn").change(function() {
+			readURL(this);
+		});
+
+
+
+		// on load 
+		$("#form-profile #col-photo label").hide();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 		//on click, toggle stat
 		//live change if checked
 		//otherwise, remove from storage

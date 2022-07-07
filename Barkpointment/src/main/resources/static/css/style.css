@@ -55,9 +55,9 @@ html, body {
     IMAGES 
 **************************************************/
 .bg__cover {
-	background-repeat:no-repeat;
+	background-repeat: no-repeat;
 	background-size: cover;
-	background-position:center;
+	background-position: center;
 }
 
 .bg__login {
@@ -115,6 +115,10 @@ form input[type="text"], form input[type="tel"], form input[type="email"],
 	margin: 10px 0px;
 }
 
+select, input[type="date"] {
+	cursor: pointer;
+}
+
 button {
 	border-radius: 0% !important;
 }
@@ -129,3 +133,17 @@ button {
 .createAcct>div {
 	flex-grow: 1;
 }
+
+/**************************************************
+    photo avatar 
+**************************************************/
+#preview-container {
+	background-image: url('../../images/defaultAvatar.svg');
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+}
+
+
+
+

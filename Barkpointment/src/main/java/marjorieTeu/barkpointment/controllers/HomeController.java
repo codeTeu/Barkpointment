@@ -1,40 +1,54 @@
 package marjorieTeu.barkpointment.controllers;
 
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+
+import marjorieTeu.barkpointment.beans.Dog;
+import marjorieTeu.barkpointment.database.DatabaseAccess;
 
 @Controller
 public class HomeController {
+
+	//access database through this class
+	private DatabaseAccess db;
+
+	//dependency injection, parameter will be injected at runtime
+	public HomeController(DatabaseAccess database) {
+		this.db = database;
+	}
 
 	@GetMapping("/")
 	public String goHome() {
 		return "index";
 	}
-	
+
 	@GetMapping("/login")
 	public String goLogin() {
 		return "login";
 	}
-	
+
 	@GetMapping("/register")
 	public String goRegister() {
 		return "register";
 	}
-	
+
 	@GetMapping("/faq")
 	public String goFaq() {
 		return "faq";
 	}
-	
 
 	@GetMapping("/profile")
 	public String goProfile() {
 		return "secured/profile";
 	}
-	
 
 	@GetMapping("/pets")
-	public String goPets() {
+	public String goPets(Model model) {
+		List<Dog> dogs = db.getDogs();
+		model.addAttribute("dogList",dogs);
 		return "secured/pets";
 	}
 
@@ -43,19 +57,16 @@ public class HomeController {
 		return "secured/petsAdd";
 	}
 
-
-	
 	@GetMapping("/visits")
 	public String goVisits() {
 		return "secured/visits";
 	}
-	
+
 	@GetMapping("/aptAdd")
 	public String goAptAdd() {
 		return "secured/aptAdd";
 	}
-	
-	
+
 	@GetMapping("/admin")
 	public String goAdmin() {
 		return "secured/admin/admin";

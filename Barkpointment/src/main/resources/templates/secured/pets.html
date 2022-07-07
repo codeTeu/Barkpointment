@@ -12,41 +12,27 @@
 	<div class="py-4 table-responsive-lg">
 
 
-
-		<table class="table table-hover">
+		<table class="table table-hover text-center">
 			<thead>
 				<tr>
-					<th scope="col">Pet#</th>
+					<th scope="col">Pet ID</th>
 					<th scope="col">Photo</th>
 					<th scope="col">Name</th>
 					<th scope="col">Gender</th>
 					<th scope="col">Breed</th>
 					<th scope="col">Birthday</th>
-					<th scope="col">Owner#</th>
+					<th scope="col">Owner ID</th>
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
-					<th scope="row">1</th>
+				<tr th:each="dog : ${dogList}">
+					<td th:text="${dog.dogID}">00</td>
 					<td>photo</td>
-					<td>Bolt</td>
-					<td>M</td>
-					<td>Shiba Inu</td>
-					<td>1990-08-34</td>
-					<td>234</td>
-				</tr>
-				<tr>
-					<th scope="row">2</th>
-					<td>photo</td>
-					<td>Jacob</td>
-					<td>Thornton</td>
-					<td>@fat</td>
-				</tr>
-				<tr>
-					<th scope="row">3</th>
-					<td>Larry</td>
-					<td>the Bird</td>
-					<td>@twitter</td>
+					<td th:text="${dog.name}">Bolt</td>
+					<td th:text="${dog.gender}">M</td>
+					<td th:text="${dog.breed}">Shiba Inu</td>
+					<td th:text="${dog.birthday}">1990-08-34</td>
+					<td th:text="${dog.ownerID}">234</td>
 				</tr>
 			</tbody>
 		</table>
