@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -59,11 +60,13 @@ public class HomeController {
 		model.addAttribute("dog", new Dog());
 		return "secured/petsAdd";
 	}
+	
 	@PostMapping("/addAdog")
-	public String addAdog(RequestParam dog) {
+	public String addAdog(@ModelAttribute Dog dog) {
+		int result = db.addDog(dog);
 		
-		System.out.println(dog);
-		return "secured/pets";
+		System.out.println(result);
+		return "redirect:/pets";
 	}
 	
 	@GetMapping("/visits")

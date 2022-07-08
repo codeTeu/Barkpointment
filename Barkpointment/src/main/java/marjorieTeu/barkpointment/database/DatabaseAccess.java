@@ -14,24 +14,40 @@ public class DatabaseAccess {
 
 	private NamedParameterJdbcTemplate jdbc;
 
+	BeanPropertyRowMapper<Dog> dogMapper = new BeanPropertyRowMapper<Dog>(Dog.class);
+
 	public DatabaseAccess(NamedParameterJdbcTemplate jdbc) {
 		this.jdbc = jdbc;
 	}
-	
-	/*	
-	 * retrieve all dogs 
+
+	/*
+	 * retrieve all dogs
 	 */
 	public List<Dog> getDogs() {
-		String query = "Select * FROM Dogs WHERE name IS NOT NULL";
-
-		BeanPropertyRowMapper<Dog> dogMapper = new BeanPropertyRowMapper<Dog>(Dog.class);
-		MapSqlParameterSource namedParameters = new MapSqlParameterSource();
-		
-		List<Dog> dogs = jdbc.query(query, namedParameters, dogMapper);
+		String query = "Select * FROM Dogs";
+		List<Dog> dogs = jdbc.query(query, dogMapper);
 		return dogs;
 	}
 	
-	
+	/*
+	 * add a dog
+	 */
+	public int addDog(Dog dog) {
+		MapSqlParameterSource namedParameters = new MapSqlParameterSource();
+		
+		String query = "INSERT INTO dogs(name, gender, breed, birthday, ownerID)"
+				+ "VALUES(:name, :gender, :breed, :birthday, :ownerID)";
+		
+		namedParameters
+			.addValue("name", dog.getName())
+			.addValue("gender", dog.getGender())
+			.addValue("breed", dog.getBreed())
+			.addValue("birthday", dog.getBirthday())
+			.addValue("ownerID", 2);
+
+		int returnValue = jdbc.update(query, namedParameters);
+		return returnValue;
+	}
 	
 	
 
