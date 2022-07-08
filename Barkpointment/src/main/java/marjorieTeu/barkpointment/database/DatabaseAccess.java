@@ -22,39 +22,45 @@ public class DatabaseAccess {
 		this.jdbc = jdbc;
 	}
 
-	/*
-	 * retrieve all dogs
-	 */
 	public List<Dog> getDogs() {
 		String query = "Select * FROM Dogs";
 		List<Dog> dogs = jdbc.query(query, dogMapper);
 		return dogs;
 	}
 
-	/*
-	 * add a dog
-	 */
 	public int addDog(Dog dog) {
 		MapSqlParameterSource namedParameters = new MapSqlParameterSource();
 
 		String query = "INSERT INTO dogs(name, gender, breed, birthday, ownerID)"
 				+ "VALUES(:name, :gender, :breed, :birthday, :ownerID)";
 
-		namedParameters
-			.addValue("name", dog.getName())
-			.addValue("gender", dog.getGender())
-			.addValue("breed", dog.getBreed())
-			.addValue("birthday", dog.getBirthday())
-			.addValue("ownerID", 2);
+		namedParameters.addValue("name", dog.getName()).addValue("gender", dog.getGender())
+				.addValue("breed", dog.getBreed()).addValue("birthday", dog.getBirthday()).addValue("ownerID", 2);
 
 		int returnValue = jdbc.update(query, namedParameters);
 		return returnValue;
 	}
-
 
 	public List<Account> getAccounts() {
 		String query = "Select * FROM Accounts";
 		List<Account> acctList = jdbc.query(query, acctMapper);
 		return acctList;
 	}
+
+	public int addAcct(Account acct) {
+		MapSqlParameterSource namedParameters = new MapSqlParameterSource();
+
+		String query = "INSERT INTO accounts(fname, lname, phone, address, city, province, email, isAdmin)"
+				+ "VALUES(:fname, :lname, :phone, :address, :city, :province, :email, :isAdmin)";
+
+		namedParameters.addValue("fname", acct.getFname()).addValue("lname", acct.getLname())
+				.addValue("phone", acct.getPhone()).addValue("email", acct.getEmail())
+				.addValue("address", acct.getAddress()).addValue("city", acct.getCity())
+				.addValue("province", acct.getProvince()).addValue("password", acct.getPassword())
+				.addValue("isAdmin", acct.getIsAdmin());
+
+		int returnValue = jdbc.update(query, namedParameters);
+		return returnValue;
+	}
+
 }
