@@ -2,37 +2,41 @@
 <html lang="en" xmlns:th="https://www.thymeleaf.org">
 
 <head th:replace="fragments/head :: frag_head(~{::title})">
-<title>Barkpointment | Pets</title>
+<title>Barkpointment | Accounts</title>
 </head>
 <body>
 	<header th:replace="fragments/header :: frag_header_public"></header>
 
-	<div th:replace="fragments/titleBar :: frag_titleBar('pets')"></div>
+	<div th:replace="fragments/titleBar :: frag_titleBar('ACCOUNTS')"></div>
 
 	<div class="py-4 table-responsive-lg">
-
-
 		<table class="table table-hover text-center">
 			<thead>
 				<tr>
-					<th scope="col">Pet ID</th>
-					<th scope="col">Photo</th>
-					<th scope="col">Name</th>
-					<th scope="col">Gender</th>
-					<th scope="col">Breed</th>
-					<th scope="col">Birthday</th>
-					<th scope="col">Owner ID</th>
+					<th scope="col">Account#</th>
+					<th scope="col">First Name</th>
+					<th scope="col">Last Name</th>
+					<th scope="col">Phone</th>
+					<th scope="col">Address</th>
+					<th scope="col">City</th>
+					<th scope="col">Province</th>
+					<th scope="col">Email</th>
+					<th scope="col">Password</th>
+					<th scope="col">IsAdmin</th>
 				</tr>
 			</thead>
 			<tbody>
-				<tr th:each="dog : ${dogList}">
-					<td th:text="${dog.dogID}">00</td>
-					<td>photo</td>
-					<td th:text="${dog.name}">Bolt</td>
-					<td th:text="${dog.gender}">M</td>
-					<td th:text="${dog.breed}">Shiba Inu</td>
-					<td th:text="${dog.birthday}">1990-08-34</td>
-					<td th:text="${dog.ownerID}">234</td>
+				<tr th:each="account : ${acctList}">
+					<td th:text="${account.acctID}">00</td>
+					<td th:text="${account.fname}">tempFname</td>
+					<td th:text="${account.lname}">tempLname</td>
+					<td th:text="${account.phone}">tempPhone</td>
+					<td th:text="${account.address}">tempAddress</td>
+					<td th:text="${account.city}">tempCity</td>
+					<td th:text="${account.province}">tempProv</td>
+					<td th:text="${account.email}">temp@gmail.com</td>
+					<td th:text="${account.password}">tempPass</td>
+					<td th:text="${account.isAdmin}">Y</td>
 				</tr>
 			</tbody>
 		</table>

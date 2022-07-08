@@ -8,6 +8,7 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import marjorieTeu.barkpointment.beans.Dog;
+import marjorieTeu.barkpointment.beans.Account;
 
 @Repository
 public class DatabaseAccess {
@@ -15,6 +16,7 @@ public class DatabaseAccess {
 	private NamedParameterJdbcTemplate jdbc;
 
 	BeanPropertyRowMapper<Dog> dogMapper = new BeanPropertyRowMapper<Dog>(Dog.class);
+	BeanPropertyRowMapper<Account> acctMapper = new BeanPropertyRowMapper<Account>(Account.class);
 
 	public DatabaseAccess(NamedParameterJdbcTemplate jdbc) {
 		this.jdbc = jdbc;
@@ -28,16 +30,16 @@ public class DatabaseAccess {
 		List<Dog> dogs = jdbc.query(query, dogMapper);
 		return dogs;
 	}
-	
+
 	/*
 	 * add a dog
 	 */
 	public int addDog(Dog dog) {
 		MapSqlParameterSource namedParameters = new MapSqlParameterSource();
-		
+
 		String query = "INSERT INTO dogs(name, gender, breed, birthday, ownerID)"
 				+ "VALUES(:name, :gender, :breed, :birthday, :ownerID)";
-		
+
 		namedParameters
 			.addValue("name", dog.getName())
 			.addValue("gender", dog.getGender())
@@ -48,7 +50,11 @@ public class DatabaseAccess {
 		int returnValue = jdbc.update(query, namedParameters);
 		return returnValue;
 	}
-	
-	
 
+
+	public List<Account> getAccounts() {
+		String query = "Select * FROM Accounts";
+		List<Account> acctList = jdbc.query(query, acctMapper);
+		return acctList;
+	}
 }
