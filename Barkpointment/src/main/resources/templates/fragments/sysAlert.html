@@ -2,13 +2,16 @@
 <html lang="en" xmlns:th="https://www.thymeleaf.org">
 
 <head th:replace="fragments/head :: frag_head(~{::title})">
-<title>Barkpointment | sysAlert</title>
+	<title>Barkpointment | sysAlert</title>
+<!-- 	<link rel="stylesheet" href="../../static/css/bootstrap.css">
+	<link rel="stylesheet" href="../../static/css/style.css"> -->
 </head>
 
 <body>
-<!-- 	<div th:fragment="frag_sysAlert(type,message)" class="bg-info p-4 text-white text-center fs-3">
-		<p th:text="${message}" class="m-0">TITLE BAR DEFAULT</p>
-	</div> -->
+	<!-- alertType option: success, danger, warning, dark,info -->
+	<div th:fragment="frag_sysAlert(message)" class="p-2 text-center mb-3">
+		<p th:text="${message}" class="text-center m-0">System Message Default</p>
+	</div>
 </body>
 
 </html>

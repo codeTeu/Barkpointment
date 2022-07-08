@@ -16,10 +16,10 @@
 
 		<!-- column 1-->
 		<div class="p-5 d-md-inline-block">
+		
 			<!-- sys message -->
-			<div id="sys-message" class="sys_message__base sys_message__alert">
-				<span>System Message</span>
-			</div>
+			<div th:insert="fragments/sysAlert :: frag_sysAlert('already have account')"
+				class="alert-danger" ></div>
 
 			<!-- login card-->
 			<form class="p-5 shadow bg-white text-secondary" action="#"
