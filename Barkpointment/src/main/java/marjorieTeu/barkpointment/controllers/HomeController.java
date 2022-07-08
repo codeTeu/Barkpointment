@@ -46,14 +46,14 @@ public class HomeController {
 
 	@GetMapping("/profile")
 	public String goProfile() {
-		return "secured/profile";
+		return "secured/user/profile";
 	}
 
 	@GetMapping("/pets")
 	public String goPets(Model model) {
 		List<Dog> dogs = db.getDogs();
 		model.addAttribute("dogList", dogs);
-		return "secured/admin/pets";
+		return "secured/user/pets";
 	}
 
 	@GetMapping("/accounts")
@@ -66,7 +66,7 @@ public class HomeController {
 	@GetMapping("/petsAdd")
 	public String goPetsAdd(Model model) {
 		model.addAttribute("dog", new Dog());
-		return "secured/admin/petsAdd";
+		return "secured/user/petsAdd";
 	}
 
 	@PostMapping("/addAdog")
