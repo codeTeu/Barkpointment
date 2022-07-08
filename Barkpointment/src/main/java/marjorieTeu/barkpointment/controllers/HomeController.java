@@ -52,13 +52,20 @@ public class HomeController {
 	public String goPets(Model model) {
 		List<Dog> dogs = db.getDogs();
 		model.addAttribute("dogList",dogs);
-		return "secured/pets";
+		return "secured/admin/pets";
 	}
-
+	
+	@GetMapping("/accounts")
+	public String goAccounts(Model model) {
+		List<Dog> accounts = db.getDogs();
+		model.addAttribute("accountList",accounts);
+		return "secured/admin/accounts";
+	}
+	
 	@GetMapping("/petsAdd")
 	public String goPetsAdd(Model model) {
 		model.addAttribute("dog", new Dog());
-		return "secured/petsAdd";
+		return "secured/admin/petsAdd";
 	}
 	
 	@PostMapping("/addAdog")

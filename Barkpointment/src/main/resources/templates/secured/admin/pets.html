@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+
+<head th:replace="fragments/head :: frag_head(~{::title})">
+<title>Barkpointment | Pets</title>
+</head>
+<body>
+	<header th:replace="fragments/header :: frag_header_public"></header>
+
+	<div th:replace="fragments/titleBar :: frag_titleBar('pets')"></div>
+
+	<div class="py-4 table-responsive-lg">
+
+
+		<table class="table table-hover text-center">
+			<thead>
+				<tr>
+					<th scope="col">Pet ID</th>
+					<th scope="col">Photo</th>
+					<th scope="col">Name</th>
+					<th scope="col">Gender</th>
+					<th scope="col">Breed</th>
+					<th scope="col">Birthday</th>
+					<th scope="col">Owner ID</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="dog : ${dogList}">
+					<td th:text="${dog.dogID}">00</td>
+					<td>photo</td>
+					<td th:text="${dog.name}">Bolt</td>
+					<td th:text="${dog.gender}">M</td>
+					<td th:text="${dog.breed}">Shiba Inu</td>
+					<td th:text="${dog.birthday}">1990-08-34</td>
+					<td th:text="${dog.ownerID}">234</td>
+				</tr>
+			</tbody>
+		</table>
+
+	</div>
+
+	<footer th:replace="fragments/footer :: frag_footer_dark"></footer>
+</body>
