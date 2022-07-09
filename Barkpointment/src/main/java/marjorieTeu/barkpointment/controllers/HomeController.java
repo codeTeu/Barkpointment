@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import marjorieTeu.barkpointment.beans.Dog;
 import marjorieTeu.barkpointment.beans.Account;
 import marjorieTeu.barkpointment.beans.Appointment;
-import marjorieTeu.barkpointment.beans.Appoointment;
 import marjorieTeu.barkpointment.database.DatabaseAccess;
 
 @Controller

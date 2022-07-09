@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import marjorieTeu.barkpointment.beans.Dog;
 import marjorieTeu.barkpointment.beans.Account;
+import marjorieTeu.barkpointment.beans.Appointment;
 
 @Repository
 public class DatabaseAccess {
@@ -17,6 +18,7 @@ public class DatabaseAccess {
 
 	BeanPropertyRowMapper<Dog> dogMapper = new BeanPropertyRowMapper<Dog>(Dog.class);
 	BeanPropertyRowMapper<Account> acctMapper = new BeanPropertyRowMapper<Account>(Account.class);
+	BeanPropertyRowMapper<Appointment> apptMapper = new BeanPropertyRowMapper<Appointment>(Appointment.class);
 
 	public DatabaseAccess(NamedParameterJdbcTemplate jdbc) {
 		this.jdbc = jdbc;
@@ -63,4 +65,10 @@ public class DatabaseAccess {
 		return returnValue;
 	}
 
+	
+	public List<Appointment> getAppointments() {
+		String query = "Select * FROM Appointments";
+		List<Appointment> apptList = jdbc.query(query, apptMapper);
+		return apptList;
+	}
 }
