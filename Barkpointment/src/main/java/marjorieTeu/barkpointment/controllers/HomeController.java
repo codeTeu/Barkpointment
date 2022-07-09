@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import marjorieTeu.barkpointment.beans.Dog;
 import marjorieTeu.barkpointment.beans.Account;
+import marjorieTeu.barkpointment.beans.Appointment;
+import marjorieTeu.barkpointment.beans.Appoointment;
 import marjorieTeu.barkpointment.database.DatabaseAccess;
 
 @Controller
@@ -61,6 +63,13 @@ public class HomeController {
 		List<Account> acctList = db.getAccounts();
 		model.addAttribute("acctList", acctList);
 		return "secured/admin/accounts";
+	}
+	
+	@GetMapping("/appointments")
+	public String goAppointments(Model model) {
+		List<Appointment> apptList = db.getAppointments();
+		model.addAttribute("apptList", apptList);
+		return "secured/admin/appointments";
 	}
 
 	@GetMapping("/petsAdd")

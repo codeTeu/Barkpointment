@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+
+<head th:replace="fragments/head :: frag_head(~{::title})">
+<title>Barkpointment | Appointments</title>
+</head>
+<body>
+	<header th:replace="fragments/header :: frag_header_public"></header>
+
+	<div th:replace="fragments/titleBar :: frag_titleBar('Appointments')"></div>
+
+	<div class="py-4 table-responsive-lg">
+		<table class="table table-hover text-center">
+			<thead>
+				<tr>
+					<th scope="col">#</th>
+					<th scope="col">Date</th>
+					<th scope="col">Time</th>
+					<th scope="col">OwnerID</th>
+					<th scope="col">DogID</th>
+					<th scope="col">Breed</th>
+				</tr>
+			</thead>
+
+			<tbody>
+				<tr th:each="appt : ${apptList}">
+					<td th:text="${appt.apptID}">00</td>
+					<td th:text="${appt.date}">tempFname</td>
+					<td th:text="${appt.time}">00:00</td>
+					<td th:text="${appt.ownerID}">0</td>
+					<td th:text="${appt.dogID}">0</td>
+				</tr>
+			</tbody>
+		</table>
+
+	</div>
+
+	<footer th:replace="fragments/footer :: frag_footer_dark"></footer>
+</body>

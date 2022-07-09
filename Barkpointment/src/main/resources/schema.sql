@@ -30,7 +30,7 @@ CREATE TABLE appointments(
 	ownerID int NOT NULL,
 	dogID int NOT NULL,
 	
-	PRIMARY KEY (apptID)  ,
+	PRIMARY KEY (apptID),
 	FOREIGN KEY (ownerID) REFERENCES accounts(acctID),
 	FOREIGN KEY (dogID) REFERENCES dogs(dogID)
 );
