@@ -4,8 +4,8 @@
 
 <head th:replace="fragments/head :: frag_head(~{::title})">
 <title>Barkpointment | Login</title>
-<!-- <link rel="stylesheet" href="../static/css/bootstrap.css">
-	<link rel="stylesheet" href="../static/css/style.css"> -->
+<link rel="stylesheet" href="../static/css/bootstrap.css">
+	<link rel="stylesheet" href="../static/css/style.css">
 
 </head>
 
@@ -22,23 +22,30 @@
 			<div th:if="${param.error}" class="alert-danger">
 				<div th:insert="fragments/sysAlert :: frag_sysAlert('system message here')"></div>
 			</div>
-			
+		
+			<div id="genContainer" class="pb-4 text-center">
+				<p>Generate default account</p>
+				<button class="btn btn-md btn-secondary text-white w-25" id="btnUserAcct">'user'</button>
+				<button class="btn btn-md btn-secondary text-white w-25" id="btnAdminAcct">'admin'</button>
+				<button class="btn btn-md btn-secondary text-white w-25" id="btnReset">Reset</button>
+				
+			</div>
 			
 			<!-- login card-->
-			<form class="p-5 shadow bg-white text-secondary" action="#" th:action="@{/login}"
+			<form id="form__login" class="p-5 shadow bg-white text-secondary" action="#" th:action="@{/login}"
 				method="post">
 				<p class="form__title">Login Form</p>
 				<br />
 				<div id="login-info">
 					<div class="form-floating">
-						<input type="text" class="form-control" id="usernameID" name="username" value=""
+						<input type="text" class="form-control" id="usernameID" name="username"
 							placeholder="username" required> 
 							<label for="usernameID">Username</label>
 					</div>
 
 					<div class="form-floating">
 						<input type="password" class="form-control" id="passID" name="password"
-							placeholder="Password" value="000000" required> <label
+							placeholder="Password"  required> <label
 							for="passID">Password</label>
 					</div>
 
@@ -49,15 +56,18 @@
 					</div>
 			
 					<button id="submit" type="submit" class="w-100 btn btn-lg btn-info text-white">login</button>
+					<!-- <div class="text-center p-2">
+						<a href="#" class="link-info">Forgot password</a>
+					</div> -->
 				</div>
 				<!-- end of login-info -->
 
 				<hr />
 
 				<div class="text-center">
-					Don’t have an account? <a href="#" th:href="@{/register}"
-						class="link-info">Create one</a> <br /> <a href="#"
-						class="link-info">Forgot password</a>
+					Don’t have an account? 
+					<a href="#" th:href="@{/register}" class="link-info">Create one</a> <br /> 
+					
 				</div>
 
 			</form>

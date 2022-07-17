@@ -3,25 +3,34 @@
 				xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head th:replace="fragments/head :: frag_head(~{::title})">
 <title>Barkpointment | Register</title>
-<!-- 	<link rel="stylesheet" href="../static/css/bootstrap.css">
+	<link rel="stylesheet" href="../static/css/bootstrap.css">
 	<link rel="stylesheet" href="../static/css/style.css">
- -->
+
 </head>
 
 <body>
 
 	<header th:replace="fragments/header :: frag_header_logo"></header>
+	
+
 
 	<div class="full-height bg__cover bg__register">
 		<!-- column 1-->
+		
 		<div class="p-5 w-50">
 			<!-- sys message -->
 			<div th:if="${param.error}" class="alert-danger">
 				<div th:insert="fragments/sysAlert :: frag_sysAlert('system message here')"></div>
 			</div>
 			
+			<div id="genContainer" class="pt-5 pb-4 text-center">
+				<button class="btn btn-md btn-secondary text-white" id="btnRegInfo">Generate info</button>
+				<button class="btn btn-md btn-secondary text-white" id="btnReset">Reset</button>
+			
+			</div>
+			
 			<!-- login card-->
-			<form class="p-5 shadow bg-white text-secondary" action="#" th:action="@{/createUser}"
+			<form id="form__register" class="p-5 shadow bg-white text-secondary" action="#" th:action="@{/createUser}"
 				method="post">
 				<p class="form__title">Create your Account</p>
 				<br />
@@ -56,7 +65,7 @@
 					</div>
 					<div class="flex-shrink-1">
 						<div class="form-floating">
-							<input type=text class="form-control" id="username" placeholder="username" 
+							<input type=text class="form-control" id="usernameID" placeholder="username" 
 							name="username"required> 
 							<label for="username">Username</label>
 						</div>
@@ -66,7 +75,7 @@
 						<div class="form-floating">
 							<input type="password" class="form-control" id="passID" placeholder="Password" 
 							name="password" required> 
-								<label for="passID2">Retype password</label>
+								<label for="passID">Password</label>
 						</div>
 					</div>
 
@@ -86,8 +95,7 @@
 					</div>
 				</div>
 
-				<button id="submit" type="submit"
-					class="w-100 btn btn-lg btn-info text-white">Create</button>
+				<button id="submit" type="submit" class="w-100 btn btn-lg btn-info text-white">Create</button>
 				<hr />
 
 				<div class="text-center">
@@ -97,6 +105,7 @@
 
 			</form>
 			<!-- end of form -->
+
 
 		</div>
 		<!--  end of column -->

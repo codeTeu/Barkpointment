@@ -24,10 +24,13 @@
 		Roles: <span sec:authentication="principal.authorities"></span><br />
 	</div>
 	
-	<div th:replace="fragments/carousel :: frag_carousel"></div>
+<!-- 	<div th:replace="fragments/carousel :: frag_carousel"></div> -->
+
+	<div th:replace="fragments/titleBar :: frag_titleBar('FAQ')"></div>
+
 
 	<div class="p-5">
-		<h1 class="color-dark text-center">FAQ</h1>
+<!-- 		<h1 class="color-dark text-center">FAQ</h1> -->
 		
 		<div class="accordion accordion-flush" id="accordionFlush">
 			<div class="accordion-item">
@@ -113,5 +116,8 @@
 	</div>
 	<!-- end of accordion section -->
 
+<div>
 	<footer th:replace="fragments/footer :: frag_footer_dark"></footer>
+</div>
+
 </body>
