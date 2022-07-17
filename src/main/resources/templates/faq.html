@@ -6,8 +6,24 @@
 </head>
 
 <body>
-	<header th:replace="fragments/header :: frag_header_public"></header>
 
+	<div sec:authorize="!isAuthenticated()">
+		<header th:replace="fragments/header :: frag_header_public"></header>
+	</div>
+
+	<div sec:authorize="isAuthenticated()">
+		<div sec:authorize="hasRole('ROLE_USER')">
+			<header th:replace="fragments/header :: frag_header_user"></header>
+		</div>
+
+		<div sec:authorize="hasRole('ROLE_ADMIN')">
+			<header th:replace="fragments/header :: frag_header_admin"></header>
+		</div>
+		
+		User's name: <span sec:authentication="name"></span><br />
+		Roles: <span sec:authentication="principal.authorities"></span><br />
+	</div>
+	
 	<div th:replace="fragments/carousel :: frag_carousel"></div>
 
 	<div class="p-5">

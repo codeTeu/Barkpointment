@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<html lang="en" xmlns:th="https://www.thymeleaf.org"
+xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 
 <head th:replace="fragments/head :: frag_head(~{::title})">
 	<title>Barkpointment | Pets</title>
@@ -8,8 +9,20 @@
 </head>
 
 <body>
-	<header th:replace="fragments/header :: frag_header_public"></header>
 
+	<div sec:authorize="isAuthenticated()">
+		<div sec:authorize="hasRole('ROLE_USER')">
+			<header th:replace="fragments/header :: frag_header_user"></header>
+		</div>
+
+		<div sec:authorize="hasRole('ROLE_ADMIN')">
+			<header th:replace="fragments/header :: frag_header_admin"></header>
+		</div>
+		
+		User's name: <span sec:authentication="name"></span><br />
+		Roles: <span sec:authentication="principal.authorities"></span><br />
+	</div>
+	
 	<div th:replace="fragments/titleBar :: frag_titleBar('pets')"></div>
 
 	<div class="py-4 table-responsive-lg">

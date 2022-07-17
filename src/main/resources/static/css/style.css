@@ -189,7 +189,7 @@ button {
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: center;
-	background-color: antiquewhite;
+	background-color: silver;
 	text-align: right;
 }
 
@@ -220,33 +220,36 @@ button {
 	height: 30px;
 }
 
-/* @media (max-width: 800px) {
+
+@media ( max-width : 800px) {
 	#form__addPet #photo {
-		height: 500px;
+		height: 400px;
 	}
-
 	#form__addPet #gridContainer {
 		grid-template-columns: 1fr;
-		grid-template-areas:
-			"photo"
-			"data";
+		grid-template-areas: "photo" "data";
 	}
-} */
-
-@media (max-width: 800px) {
-	#form__addPet #gridContainer {
-		grid-template-columns: 1fr;
-		grid-template-areas:
-			"photo"
-			"data";
-	}
-/* 	#form__addPet #data {
-		grid-template-columns: 1fr;
-		grid-template-areas:
-			"name"
-			"gender"
-			"bday"
-			"breed"
-			"addBtn";
-	} */
 }
+
+@media ( max-width : 700px) {
+	#form__addPet #data {
+		grid-template-columns: 1fr;
+		grid-template-areas: 
+		"name" 
+		"gender" 
+		"bday" 
+		"breed" 
+		"addBtn";
+	}
+}
+
+/**************************************************
+    NAV dropdown
+/* **************************************************/
+
+    .dropdown:hover .dropdown-menu{
+        display: block;
+    }
+    .dropdown-menu{
+        margin-top: 0;
+    }

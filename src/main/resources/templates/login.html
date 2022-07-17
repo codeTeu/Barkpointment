@@ -19,25 +19,27 @@
 		<div class="p-5 d-md-inline-block">
 		
 			<!-- sys message -->
-			<div th:insert="fragments/sysAlert :: frag_sysAlert('already have account')"
-				class="alert-danger" ></div>
-
+			<div th:if="${param.error}" class="alert-danger">
+				<div th:insert="fragments/sysAlert :: frag_sysAlert('system message here')"></div>
+			</div>
+			
+			
 			<!-- login card-->
-			<form class="p-5 shadow bg-white text-secondary" action="#"
+			<form class="p-5 shadow bg-white text-secondary" action="#" th:action="@{/login}"
 				method="post">
 				<p class="form__title">Login Form</p>
 				<br />
 				<div id="login-info">
 					<div class="form-floating">
-						<input type="email" class="form-control" id="emailID" value="name@example.com"
-							placeholder="name@example.com" required> <label
-							for="email">Email</label>
+						<input type="text" class="form-control" id="usernameID" name="username" value=""
+							placeholder="username" required> 
+							<label for="usernameID">Username</label>
 					</div>
 
 					<div class="form-floating">
-						<input type="password" class="form-control" id="passID"
+						<input type="password" class="form-control" id="passID" name="password"
 							placeholder="Password" value="000000" required> <label
-							for="password">Password</label>
+							for="passID">Password</label>
 					</div>
 
 					<div class="form-check">
@@ -45,9 +47,8 @@
 							class="form-check-input"> <label class="form-check-label"
 							for="remember-me">Remember me</label> <br> <br>
 					</div>
-
-					<button id="submit" type="submit"
-						class="w-100 btn btn-lg btn-info text-white">login</button>
+			
+					<button id="submit" type="submit" class="w-100 btn btn-lg btn-info text-white">login</button>
 				</div>
 				<!-- end of login-info -->
 
@@ -69,7 +70,6 @@
 
 
 	<footer th:insert="fragments/footer :: frag_footer_light"></footer>
-
 
 
 </body>

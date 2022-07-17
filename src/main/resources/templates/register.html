@@ -16,61 +16,76 @@
 		<!-- column 1-->
 		<div class="p-5 w-50">
 			<!-- sys message -->
-			<div th:insert="fragments/sysAlert :: frag_sysAlert('already have account')"
-				class="alert-danger" ></div>
-
+			<div th:if="${param.error}" class="alert-danger">
+				<div th:insert="fragments/sysAlert :: frag_sysAlert('system message here')"></div>
+			</div>
+			
 			<!-- login card-->
-			<form class="p-5 shadow bg-white text-secondary" action="#"
+			<form class="p-5 shadow bg-white text-secondary" action="#" th:action="@{/createUser}"
 				method="post">
 				<p class="form__title">Create your Account</p>
 				<br />
-				
+
 				<div class="createAcct">
 					<div class="flex-shrink-1">
 						<div class="form-floating">
-							<input type="text" class="form-control" id="fnameID"
-								placeholder="John" required> <label for="fnameID">First
-								Name</label>
+							<input type="text" class="form-control" id="fnameID" placeholder="John" 
+							name="fname" required> 
+								<label for="fnameID">First Name</label>
 						</div>
 					</div>
 					<div class="flex-shrink-1">
 						<div class="form-floating">
-							<input type="text" class="form-control" id="lnameID"
-								placeholder="Doe" required> <label for="lnameID">Last
-								Name</label>
+							<input type="text" class="form-control" id="lnameID" placeholder="Doe" 
+							name="lname" required> 
+								<label for="lnameID">Last Name</label>
 						</div>
 					</div>
 					<div class="flex-shrink-1">
 						<div class="form-floating">
-							<input type="text" class="form-control" id="phoneID"
-								placeholder="1234567" required> <label for="phoneID">Phone</label>
+							<input type="text" class="form-control" id="phoneID" placeholder="1234567" required> 
+								<label for="phoneID">Phone</label>
 						</div>
 					</div>
 					<div class="flex-shrink-1">
 						<div class="form-floating">
-							<input type="email" class="form-control" id="emailID"
-								placeholder="name@example.com" required> <label
-								for="emailID">Email</label>
+							<input type="email" class="form-control" id="emailID" placeholder="name@example.com" 
+							name="email" required> 
+								<label for="emailID">Email</label>
 						</div>
 					</div>
 					<div class="flex-shrink-1">
 						<div class="form-floating">
-							<input type="password" class="form-control" id="passID"
-								placeholder="Password" required> <label for="passID">Password</label>
+							<input type=text class="form-control" id="username" placeholder="username" 
+							name="username"required> 
+							<label for="username">Username</label>
 						</div>
 					</div>
 
 					<div class="flex-shrink-1">
 						<div class="form-floating">
-							<input type="password" class="form-control" id="passID2"
-								placeholder="Password" required> <label for="passID2">Retype
-								password</label>
+							<input type="password" class="form-control" id="passID" placeholder="Password" 
+							name="password" required> 
+								<label for="passID2">Retype password</label>
 						</div>
 					</div>
 
 				</div>
 				<!-- end of login-info -->
-				<br />
+
+				<div class="text-center p-2">
+					<div>ROLE</div>
+			
+					<div class="form-check form-check-inline">
+						<input class="form-check-input" type="radio" name="authority" id="roleUser" th:value="ROLE_USER" checked>
+						<label class="form-check-label" for="roleUser">User</label>
+					</div>
+					<div class="form-check form-check-inline">
+						<input class="form-check-input" type="radio" name="authority" id="roleAdmin" th:value="ROLE_ADMIN">
+						<label class="form-check-label" for="roleAdmin">Admin</label>
+					</div>
+				</div>
+
 				<button id="submit" type="submit"
 					class="w-100 btn btn-lg btn-info text-white">Create</button>
 				<hr />

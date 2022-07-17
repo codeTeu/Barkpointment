@@ -15,7 +15,7 @@ import marjorieTeu.barkpointment.beans.Appointment;
 public class DatabaseAccess {
 
 	private NamedParameterJdbcTemplate jdbc;
-
+	
 	BeanPropertyRowMapper<Dog> dogMapper = new BeanPropertyRowMapper<Dog>(Dog.class);
 	BeanPropertyRowMapper<Account> acctMapper = new BeanPropertyRowMapper<Account>(Account.class);
 	BeanPropertyRowMapper<Appointment> apptMapper = new BeanPropertyRowMapper<Appointment>(Appointment.class);
