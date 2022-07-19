@@ -10,8 +10,11 @@
 
 <body>
 	<!-- alertType option: success, danger, warning, dark,info -->
-	<div th:fragment="frag_sysAlert(message)" class="p-2 text-center mb-3">
-		<p th:text="${message}" class="text-center m-0">System Message Default</p>
+	<div th:fragment="frag_sysAlert(alertType, sysMessage)" class="text-center">
+		
+		<p th:if="${alertType}==success" th:text="${sysMessage}" class="m-0  p-2 alert-success">System Message Default</p>
+		<p th:if="${alertType}==danger" th:text="${sysMessage}" class="m-0  p-2 alert-danger">System Message Default</p>
+		
 	</div>
 </body>
 

@@ -49,17 +49,23 @@ public class DatabaseAccess {
 		return acctList;
 	}
 
-	public int addAcct(Account acct) {
+	public int addAcct(Account newAcct) {
 		MapSqlParameterSource namedParameters = new MapSqlParameterSource();
 
-		String query = "INSERT INTO accounts(fname, lname, phone, address, city, province, email, isAdmin)"
-				+ "VALUES(:fname, :lname, :phone, :address, :city, :province, :email, :isAdmin)";
+		String query = "INSERT INTO accounts (username, password, authority, fname, lname, phone, email, address, city, province) "
+				+ "VALUES (:username, :password, :authority, :fname, :lname, :phone, :email, :address, :city, :province)";
 
-		namedParameters.addValue("fname", acct.getFname()).addValue("lname", acct.getLname())
-				.addValue("phone", acct.getPhone()).addValue("email", acct.getEmail())
-				.addValue("address", acct.getAddress()).addValue("city", acct.getCity())
-				.addValue("province", acct.getProvince()).addValue("password", acct.getPassword())
-				.addValue("isAdmin", acct.getIsAdmin());
+		namedParameters
+		.addValue("username", newAcct.getUsername())
+		.addValue("password", newAcct.getPassword())
+		.addValue("authority", newAcct.getAuthority())
+		.addValue("fname", newAcct.getFname())
+		.addValue("lname", newAcct.getLname())
+		.addValue("phone", newAcct.getPhone())
+		.addValue("email", newAcct.getEmail())
+		.addValue("address", newAcct.getAddress())
+		.addValue("city", newAcct.getCity())
+		.addValue("province", newAcct.getProvince());
 
 		int returnValue = jdbc.update(query, namedParameters);
 		return returnValue;

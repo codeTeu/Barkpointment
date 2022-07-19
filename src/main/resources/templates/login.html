@@ -13,16 +13,15 @@
 
 	<header th:replace="fragments/header :: frag_header_logo"></header>
 
-	<div class="full-height bg__cover bg__login ">
+	<!-- sys message -->
+	<div  th:if="${alertType}!=''" th:insert="fragments/sysAlert :: frag_sysAlert(${alertType}, ${sysMessage})"></div> 
+	
+	
+	<div class="full-height bg__cover bg__login">
 
 		<!-- column 1-->
 		<div class="p-5 d-md-inline-block">
-		
-			<!-- sys message -->
-			<div th:if="${param.error}" class="alert-danger">
-				<div th:insert="fragments/sysAlert :: frag_sysAlert('system message here')"></div>
-			</div>
-		
+	
 			<div id="genContainer" class="pb-4 text-center">
 				<p>Generate default account</p>
 				<button class="btn btn-md btn-secondary text-white w-25" id="btnUserAcct">'user'</button>

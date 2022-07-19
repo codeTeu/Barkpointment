@@ -15,7 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import marjorieTeu.barkpointment.beans.Dog;
 import marjorieTeu.barkpointment.beans.Account;
@@ -33,6 +33,7 @@ public class HomeController {
 			this.db = database;
 		}
 		
+		
 		@Autowired
 		private JdbcUserDetailsManager jdbcUserDetailsManager;
 
@@ -47,7 +48,11 @@ public class HomeController {
 		}
 
 		@GetMapping("/login")
-		public String goLogin() {
+		public String goLogin(Model model) {
+			
+			model.addAttribute("sysMessage", "");
+			model.addAttribute("alertType", "");
+			
 			return "login";
 		}
 		
@@ -62,32 +67,50 @@ public class HomeController {
 		}
 
 		@GetMapping("/register")
-		public String goRegister() {
+		public String goRegister(Model model) {
+			model.addAttribute("account", new Account());
 			return "register";
 		}
 
 		
 		@PostMapping("/createUser")
 		public String addUser(
-				@RequestParam String username, 
-				@RequestParam String password, 
-				@RequestParam String authority,
+				@ModelAttribute Account newAccount,
+				RedirectAttributes redirectAttributes,
 				Model model) {
-		
+
+			//catch if username exist
+			boolean userExist =   jdbcUserDetailsManager.userExists(newAccount.getUsername());
+			
+			if(userExist) {
+				model.addAttribute("sysMessage", "Username already exist");
+				model.addAttribute("alertType", "danger");
+				model.addAttribute("account", newAccount);
+				return "/register";
+			}
+			
+			//add new account
+
+			String encodedPassword = passwordEncoder.encode(newAccount.getPassword());
+
 			List<GrantedAuthority> authorityList = new ArrayList<>();
-			
-			
-			authorityList.add(new SimpleGrantedAuthority(authority));
-			
-			
-			String encodedPassword = passwordEncoder.encode(password);
-			
-			User user = new User(username, encodedPassword, authorityList);
-		
+			authorityList.add(new SimpleGrantedAuthority(newAccount.getAuthority()));
+
+			User user = new User(newAccount.getUsername(), encodedPassword, authorityList);
+
+			// create user and authority
 			jdbcUserDetailsManager.createUser(user);
-			
-			model.addAttribute("message", "User successfully added");
-			return "redirect:/";
+
+			// create account
+			newAccount.setPassword(encodedPassword);
+			db.addAcct(newAccount);
+
+			// give system message
+			model.addAttribute("sysMessage", "Account successfully created");
+			model.addAttribute("alertType", "success");
+
+
+			return "/login";
 		}
 		
 
