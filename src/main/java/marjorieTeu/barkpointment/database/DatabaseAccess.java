@@ -21,24 +21,39 @@ public class DatabaseAccess {
 	BeanPropertyRowMapper<Appointment> apptMapper = new BeanPropertyRowMapper<Appointment>(Appointment.class);
 	MapSqlParameterSource namedParameters = new MapSqlParameterSource();
 	
+	
 	public DatabaseAccess(NamedParameterJdbcTemplate jdbc) {
 		this.jdbc = jdbc;
 	}
 
+	/**
+	 * retrieves all dogs 
+	 * @return dogsList
+	 */
 	public List<Dog> getDogs() {
 		String query = "Select * FROM Dogs";
-		List<Dog> dogs = jdbc.query(query, dogMapper);
-		return dogs;
+		List<Dog> dogsList = jdbc.query(query, dogMapper);
+		return dogsList;
 	}
 	
+	/**
+	 * retrieves all dogs of a specific user
+	 * @param acctID of user
+	 * @return dogsList
+	 */
 	public List<Dog> getDogsOf(int acctID) {
 		String query = "Select * FROM Dogs WHERE ownerID=:acctID";
 		namedParameters.addValue("acctID", acctID);
 		
-		List<Dog> dogs = jdbc.query(query, namedParameters, dogMapper);
-		return dogs;
+		List<Dog> dogsList = jdbc.query(query, namedParameters, dogMapper);
+		return dogsList;
 	}
 
+	/**
+	 * adds a dog 
+	 * @param dog
+	 * @return returnValue whether 
+	 */
 	public int addDog(Dog dog) {
 
 		String query = "INSERT INTO dogs(name, gender, breed, birthday, ownerID)"
@@ -55,15 +70,37 @@ public class DatabaseAccess {
 		return returnValue;
 	}
 
+	
+	/**
+	 * retrieves all accounts
+	 * @return list of accounts
+	 */
 	public List<Account> getAccounts() {
 		String query = "Select * FROM Accounts";
 		List<Account> acctList = jdbc.query(query, acctMapper);
 		return acctList;
 	}
-
-	public int addAcct(Account newAcct) {
 	
+	/**
+	 * retrieves a specific account using a username
+	 * @param username
+	 * @return one account
+	 */
+	public Account getAccountOf(String username) {
+		String query = "SELECT * FROM accounts WHERE username = :username";
+		namedParameters.addValue("username", username);
+		
+		Account account = jdbc.query(query, namedParameters, acctMapper).get(0);
+		
+		return account;
+	}
 
+	/**
+	 * adds an account
+	 * @param newAcct data of new user
+	 * @return returnValue
+	 */
+	public int addAcct(Account newAcct) {
 		String query = "INSERT INTO accounts (username, password, authority, fname, lname, phone, email, address, city, province) "
 				+ "VALUES (:username, :password, :authority, :fname, :lname, :phone, :email, :address, :city, :province)";
 
@@ -83,19 +120,16 @@ public class DatabaseAccess {
 		return returnValue;
 	}
 
+	
+	/**
+	 * retrieves all appointments
+	 * @return list of appointments
+	 */
 	public List<Appointment> getAppointments() {
 		String query = "Select * FROM Appointments";
 		List<Appointment> apptList = jdbc.query(query, apptMapper);
 		return apptList;
 	}
 	
-
-	public Account getAccountOf(String username) {
-		String query = "SELECT * FROM accounts WHERE username = :username";
-		namedParameters.addValue("username", username);
-		
-		Account account = jdbc.query(query, namedParameters, acctMapper).get(0);
-		
-		return account;
-	}
+	
 }

@@ -4,7 +4,6 @@ import java.security.Principal;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.security.core.GrantedAuthority;
@@ -17,8 +16,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
 import marjorieTeu.barkpointment.beans.Dog;
 import marjorieTeu.barkpointment.beans.Account;
 import marjorieTeu.barkpointment.beans.Appointment;
@@ -51,6 +48,9 @@ public class HomeController {
 		
 		boolean dataCreated = false;
 		
+		/**
+		 * default database data
+		 */
 		public void createData() {
 			Account acctUser = new Account ();
 			acctUser.setUsername("user");
@@ -79,7 +79,13 @@ public class HomeController {
 
 		}
 		
-		
+		/**
+		 * creates the database once
+		 * then goes to the index page
+		 * @param model
+		 * @param principal
+		 * @return
+		 */
 		@GetMapping("/")
 		public String goIndex(Model model, Principal principal) {
 			
@@ -88,7 +94,6 @@ public class HomeController {
 				dataCreated=true;
 				System.out.println("data created");	
 			}
-			
 			
 			
 			if (principal != null) {
@@ -120,54 +125,55 @@ public class HomeController {
 //			return "index";
 //		}
 		
-		@GetMapping("/securedIndex")
-		public String goSecuredIndex(){
-			return "secured/index";
-		}
-
+		/**
+		 * passes an account object to the page for data binding
+		 * @param model
+		 * @return
+		 */
 		@GetMapping("/register")
 		public String goRegister(Model model) {
 			model.addAttribute("account", new Account());
 			return "register";
 		}
 
-		
+		/**
+		 * checks if username already exist in the db 
+		 * if username exists, create a system message and go back to the same page
+		 * 
+		 * it check passed, adds the account
+		 * 
+		 * @param newAccount account object to be received
+		 * @param model
+		 * @return to same page
+		 */
 		@PostMapping("/createUser")
-		public String addUser(
-				@ModelAttribute Account newAccount,
-				RedirectAttributes redirectAttributes,
-				Model model) {
+		public String addUser( @ModelAttribute Account newAccount, Model model) {
 
-			//catch if username exist
 			boolean userExist =   jdbcUserDetailsManager.userExists(newAccount.getUsername());
 			
 			if(userExist) {
 				model.addAttribute("sysMessage", "Username already exist");
 				model.addAttribute("alertType", "danger");
-				model.addAttribute("account", newAccount);
 				return "/register";
 			}
 			
-			//add new account
-
+			// check passed
 			String encodedPassword = passwordEncoder.encode(newAccount.getPassword());
 
 			List<GrantedAuthority> authorityList = new ArrayList<>();
 			authorityList.add(new SimpleGrantedAuthority(newAccount.getAuthority()));
 
+			
 			User user = new User(newAccount.getUsername(), encodedPassword, authorityList);
 
-			// create user and authority
+			// create user and authority then copy the pass then create acct 
 			jdbcUserDetailsManager.createUser(user);
-
-			// create account
 			newAccount.setPassword(encodedPassword);
 			db.addAcct(newAccount);
 
 			// give system message
 			model.addAttribute("sysMessage", "Account successfully created");
 			model.addAttribute("alertType", "success");
-
 
 			return "/login";
 		}
@@ -189,15 +195,30 @@ public class HomeController {
 			return "secured/user/profile";
 		}
 
+		/**
+		 * checks if user is an admin or not
+		 * admins - retrieves all dogs in the db
+		 * otherwise retireves only dogs of specific user
+		 *  
+		 * @param model
+		 * @return
+		 */
 		@GetMapping("/pets")
 		public String goPets(Model model) {
-			System.out.println(acctID);
-			//List<Dog> dogs = db.getDogs();
-			List<Dog> dogs = db.getDogsOf(acctID);
+			List<Dog> dogsList;
+			boolean isAdmin = db.getAccountOf(username).getAuthority().equalsIgnoreCase("ROLE_ADMIN")? true : false;
+
+			if(isAdmin) {
+				dogsList = db.getDogs();
+			} 
+			else {
+				dogsList = db.getDogsOf(acctID);
+			}
+			
 			
 			model.addAttribute("acctID", acctID);
 			model.addAttribute("username", username);
-			model.addAttribute("dogList", dogs);
+			model.addAttribute("dogList", dogsList);
 			return "secured/user/pets";
 		}
 
@@ -238,7 +259,7 @@ public class HomeController {
 		public String goAptAdd() {
 			return "secured/aptAdd";
 		}
-
+		
 		@GetMapping("/admin")
 		public String goAdmin() {
 			return "secured/admin/admin";
