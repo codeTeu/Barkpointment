@@ -18,4 +18,11 @@ public class Dog {
 	private Date birthday;
 	private int ownerID;
 
+	public Dog(String name, char gender, String breed, Date birthday, int ownerID) {
+		this.name=name;
+		this.gender=gender;
+		this.breed=breed;
+		this.birthday=birthday;
+		this.ownerID=ownerID;
+	}
 }

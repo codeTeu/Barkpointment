@@ -37,12 +37,12 @@ CREATE TABLE accounts (
  );
  
  CREATE TABLE dogs (
-    dogID int  AUTO_INCREMENT ,
+	dogID int  AUTO_INCREMENT ,
     name varchar(50) NOT NULL,
     gender char(1) NOT NULL,
 	breed varchar(50) DEFAULT 'unknown', 
 	birthday DATE, 
 	ownerID int NOT NULL,
-	PRIMARY KEY (dogID)  
---	FOREIGN KEY (ownerID) REFERENCES accounts(acctID) 
+	PRIMARY KEY (dogID),  
+	FOREIGN KEY (ownerID) REFERENCES accounts(acctID) 
  );

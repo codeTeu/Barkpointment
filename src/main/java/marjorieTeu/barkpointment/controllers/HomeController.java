@@ -1,5 +1,7 @@
 package marjorieTeu.barkpointment.controllers;
 
+import java.security.Principal;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,7 +27,13 @@ import marjorieTeu.barkpointment.database.DatabaseAccess;
 
 @Controller
 public class HomeController {
-	// access database through this class
+	
+		//for logged in user
+		private int acctID=-1;
+		private String username="";
+		
+		
+		// access database through this class
 		private DatabaseAccess db;
 
 		// dependency injection, parameter will be injected at runtime
@@ -40,21 +48,72 @@ public class HomeController {
 		@Autowired
 		@Lazy
 		private BCryptPasswordEncoder passwordEncoder;
+		
+		boolean dataCreated = false;
+		
+		public void createData() {
+			Account acctUser = new Account ();
+			acctUser.setUsername("user");
+			acctUser.setPassword("temp");
+			acctUser.setAuthority("ROLE_USER");
+			acctUser.setFname("John");
+			acctUser.setLname("Doe");
+			acctUser.setPhone("6470101010");
+			acctUser.setEmail("user@gmail.com");
+			
+			Account acctAdmin = new Account ();
+			acctAdmin.setUsername("admin");
+			acctAdmin.setPassword("temp");
+			acctAdmin.setAuthority("ROLE_ADMIN");
+			acctAdmin.setFname("Emma");
+			acctAdmin.setLname("Watson");
+			acctAdmin.setPhone("6472020202");
+			acctAdmin.setEmail("emma@gmail.com");
+			
+			db.addAcct(acctUser);
+			db.addAcct(acctAdmin);
 
+			db.addDog(new Dog("Shiba", 'F', "Shiba Inu", Date.valueOf("2022-02-11"), 1));
+			db.addDog(new Dog("Loki", 'M', "Border Collie Inu", Date.valueOf("2022-03-11"), 2));
+			db.addDog(new Dog("Patch", 'F', "Pitbull", Date.valueOf("2022-04-11"), 1));
 
+		}
+		
+		
 		@GetMapping("/")
-		public String goHome() {
+		public String goIndex(Model model, Principal principal) {
+			
+			if (dataCreated==false) {
+				createData();
+				dataCreated=true;
+				System.out.println("data created");	
+			}
+			
+			
+			
+			if (principal != null) {
+				username = principal.getName();
+				acctID = db.getAccountOf(username).getAcctID();
+			}
+			
+			model.addAttribute("acctID", acctID);
+			model.addAttribute("username", username);
+			model.addAttribute("sysMessage", "");
+			model.addAttribute("alertType", "");
+
 			return "index";
 		}
 
+
+		
 		@GetMapping("/login")
 		public String goLogin(Model model) {
-			
 			model.addAttribute("sysMessage", "");
 			model.addAttribute("alertType", "");
-			
 			return "login";
 		}
+
+		
 		
 //		@PostMapping("/logout")
 //		public String goLogout() {
@@ -132,7 +191,12 @@ public class HomeController {
 
 		@GetMapping("/pets")
 		public String goPets(Model model) {
-			List<Dog> dogs = db.getDogs();
+			System.out.println(acctID);
+			//List<Dog> dogs = db.getDogs();
+			List<Dog> dogs = db.getDogsOf(acctID);
+			
+			model.addAttribute("acctID", acctID);
+			model.addAttribute("username", username);
 			model.addAttribute("dogList", dogs);
 			return "secured/user/pets";
 		}
