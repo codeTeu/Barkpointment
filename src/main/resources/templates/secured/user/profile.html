@@ -25,6 +25,40 @@
 
 	<div th:replace="fragments/titleBar :: frag_titleBar('profile')"></div>
 
+	<div class="py-4 table-responsive-lg">
+
+		<table class="table table-hover text-center">
+			<thead>
+				<tr>
+					<th scope="col">ID</th>
+					<th scope="col">Username</th>
+					<th scope="col">Authority</th>
+					<th scope="col">First Name</th>
+					<th scope="col">Last Name</th>
+					<th scope="col">Phone</th>
+					<th scope="col">Email</th>
+					<th scope="col">Address</th>
+					<th scope="col">City</th>
+					<th scope="col">Province</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="acct : ${acctList}">
+					<td th:text="${acct.acctID}"></td>
+					<td th:text="${acct.username}"></td>
+					<td th:text="${acct.authority}"></td>
+					<td th:text="${acct.fname}"></td>
+					<td th:text="${acct.lname}"></td>
+					<td th:text="${acct.phone}"></td>
+					<td th:text="${acct.email}"></td>
+					<td th:text="${acct.address}"></td>
+					<td th:text="${acct.city}"></td>
+					<td th:text="${acct.province}"></td>
+				</tr>
+			</tbody>
+		</table>
+
+	</div>
 
 	<footer th:replace="fragments/footer :: frag_footer_dark"></footer>
 </body>

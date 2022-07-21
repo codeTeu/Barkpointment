@@ -42,13 +42,13 @@ xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 			</thead>
 			<tbody>
 				<tr th:each="dog : ${dogList}">
-					<td th:text="${dog.dogID}">00</td>
+					<td th:text="${dog.dogID}"></td>
 					<td>photo</td>
-					<td th:text="${dog.name}">Bolt</td>
-					<td th:text="${dog.gender}">M</td>
-					<td th:text="${dog.breed}">Shiba Inu</td>
-					<td th:text="${dog.birthday}">1990-08-34</td>
-					<td th:text="${dog.ownerID}">1</td>
+					<td th:text="${dog.name}"></td>
+					<td th:text="${dog.gender}"></td>
+					<td th:text="${dog.breed}"></td>
+					<td th:text="${dog.birthday}"></td>
+					<td th:text="${dog.ownerID}"></td>
 				</tr>
 			</tbody>
 		</table>
