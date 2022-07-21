@@ -24,7 +24,9 @@ xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 	</div>
 	
 	<div th:replace="fragments/titleBar :: frag_titleBar('pets')"></div>
-
+	<!-- sys message -->
+	<div  th:if="${alertType}!=''" th:insert="fragments/sysAlert :: frag_sysAlert(${alertType}, ${sysMessage})"></div> 
+	
 	<div class="py-4 table-responsive-lg">
 
 

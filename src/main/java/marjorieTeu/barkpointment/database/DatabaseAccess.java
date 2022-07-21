@@ -1,12 +1,10 @@
 package marjorieTeu.barkpointment.database;
 
 import java.util.List;
-
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
-
 import marjorieTeu.barkpointment.beans.Dog;
 import marjorieTeu.barkpointment.beans.Account;
 import marjorieTeu.barkpointment.beans.Appointment;
@@ -67,6 +65,7 @@ public class DatabaseAccess {
 			.addValue("ownerID", dog.getOwnerID());
 
 		int returnValue = jdbc.update(query, namedParameters);
+		
 		return returnValue;
 	}
 
@@ -89,7 +88,6 @@ public class DatabaseAccess {
 	public Account getAccountOf(String username) {
 		String query = "SELECT * FROM accounts WHERE username = :username";
 		namedParameters.addValue("username", username);
-		
 		Account account = jdbc.query(query, namedParameters, acctMapper).get(0);
 		
 		return account;

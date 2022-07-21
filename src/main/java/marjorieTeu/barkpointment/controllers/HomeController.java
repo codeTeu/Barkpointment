@@ -2,8 +2,11 @@ package marjorieTeu.barkpointment.controllers;
 
 import java.security.Principal;
 import java.sql.Date;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.ArrayList;
 import java.util.List;
+
+import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.security.core.GrantedAuthority;
@@ -17,6 +20,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import marjorieTeu.barkpointment.beans.Dog;
 import marjorieTeu.barkpointment.beans.Account;
@@ -240,6 +244,10 @@ public class HomeController {
 			model.addAttribute("acctID", acctID);
 			model.addAttribute("username", username);
 			model.addAttribute("dogList", dogsList);
+			
+			// give system message
+//			model.addAttribute("sysMessage", "");
+//			model.addAttribute("alertType", "");
 			return "secured/user/pets";
 		}
 
@@ -266,22 +274,27 @@ public class HomeController {
 			model.addAttribute("username", username);
 			
 			// give system message
-			model.addAttribute("sysMessage", "");
-			model.addAttribute("alertType", "");
+//			model.addAttribute("sysMessage", "");
+//			model.addAttribute("alertType", "");
 			return "secured/user/petsAdd";
 		}
-
+		 
 		/**
 		 * assigns acctID of user before adding dogs data to db
 		 * @param dog data of new dog
 		 * @return
 		 */
 		@PostMapping("/addAdog")
-		public String addAdog(@ModelAttribute Dog dog) {
-			dog.setOwnerID(acctID);
-			int result = db.addDog(dog);
+		public String addAdog(@ModelAttribute Dog dog, RedirectAttributes redirectAttrs){
+			int result = 0;
 
-			System.out.println(result);
+			dog.setOwnerID(acctID);
+			result = db.addDog(dog);
+
+			redirectAttrs.addAttribute("acctID", acctID)
+						.addFlashAttribute("sysMessage", "Add dog successful")
+						.addFlashAttribute("alertType", "success");
+
 			return "redirect:/pets";
 		}
 
@@ -297,6 +310,6 @@ public class HomeController {
 		
 		@GetMapping("/admin")
 		public String goAdmin() {
-			return "secured/admin/admin";
+			return "secured/admin/adminIndex";
 		}
 }
