@@ -19,21 +19,17 @@ xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 		<div sec:authorize="hasRole('ROLE_ADMIN')">
 			<header th:replace="fragments/header :: frag_header_admin"></header>
 		</div>
-		
-		User's name: <span sec:authentication="name"></span><br />
-		Roles: <span sec:authentication="principal.authorities"></span><br />
 	</div>
 	
+
 	
 	<div th:replace="fragments/titleBar :: frag_titleBar('pets')"></div>
-
-	<div class="full-height ">
+	
+	<div class="full-height">
 		<!-- column 1-->
 		<div class="p-5">
 			<!-- sys message -->
-			<div id="sys-message" class="sys_message__base sys_message__alert">
-				<span>System Message</span>
-			</div>
+			<div th:if="${alertType}!=''" th:insert="fragments/sysAlert :: frag_sysAlert(${alertType}, ${sysMessage})"></div>
 
 			<!-- add card-->
 			<form id="form__addPet" class="p-5 shadow bg-white text-secondary" action="#" th:action="@{/addAdog}" method="post" th:object="${dog}">
@@ -84,7 +80,6 @@ xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 								<option value="Pug">Pug</option>
 							</select>
 						</div>
-
 
 						<button id="addBtn" type="submit" class="w-100 btn btn-lg btn-info text-white">Add</button>
 					</div>

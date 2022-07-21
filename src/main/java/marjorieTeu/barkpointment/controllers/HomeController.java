@@ -16,6 +16,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 import marjorieTeu.barkpointment.beans.Dog;
 import marjorieTeu.barkpointment.beans.Account;
 import marjorieTeu.barkpointment.beans.Appointment;
@@ -190,15 +192,35 @@ public class HomeController {
 			return "faq";
 		}
 
+		/**
+		 * checks if user is an admin or not
+		 * admin - retrieves all user accounts in the db
+		 * otherwise, retrieves only account of specific user
+		 *
+		 * @param model
+		 * @return
+		 */
 		@GetMapping("/profile")
-		public String goProfile() {
+		public String goProfile(Model model) {
+						
+			boolean isAdmin = db.getAccountOf(username).getAuthority().equalsIgnoreCase("ROLE_ADMIN")? true : false;
+
+			if(isAdmin) {
+				model.addAttribute("acctList", db.getAccounts());
+			} 
+			else {
+				model.addAttribute("acctList", db.getAccountOf(username));
+			}
+			
+			model.addAttribute("acctID", acctID);
+			model.addAttribute("username", username);
 			return "secured/user/profile";
 		}
 
 		/**
 		 * checks if user is an admin or not
-		 * admins - retrieves all dogs in the db
-		 * otherwise retireves only dogs of specific user
+		 * admin - retrieves all dogs in the db
+		 * otherwise, retrieves only dogs of specific user
 		 *  
 		 * @param model
 		 * @return
@@ -215,19 +237,12 @@ public class HomeController {
 				dogsList = db.getDogsOf(acctID);
 			}
 			
-			
 			model.addAttribute("acctID", acctID);
 			model.addAttribute("username", username);
 			model.addAttribute("dogList", dogsList);
 			return "secured/user/pets";
 		}
 
-		@GetMapping("/accounts")
-		public String goAccounts(Model model) {
-			List<Account> acctList = db.getAccounts();
-			model.addAttribute("acctList", acctList);
-			return "secured/admin/accounts";
-		}
 		
 		@GetMapping("/appointments")
 		public String goAppointments(Model model) {
@@ -236,14 +251,34 @@ public class HomeController {
 			return "secured/admin/appointments";
 		}
 
+		/**
+		 * passes a dog object for form binding
+		 * goes to add pets page
+		 * @param model
+		 * @return
+		 */
 		@GetMapping("/petsAdd")
 		public String goPetsAdd(Model model) {
+			
 			model.addAttribute("dog", new Dog());
+			
+			model.addAttribute("acctID", acctID);
+			model.addAttribute("username", username);
+			
+			// give system message
+			model.addAttribute("sysMessage", "");
+			model.addAttribute("alertType", "");
 			return "secured/user/petsAdd";
 		}
 
+		/**
+		 * assigns acctID of user before adding dogs data to db
+		 * @param dog data of new dog
+		 * @return
+		 */
 		@PostMapping("/addAdog")
 		public String addAdog(@ModelAttribute Dog dog) {
+			dog.setOwnerID(acctID);
 			int result = db.addDog(dog);
 
 			System.out.println(result);
