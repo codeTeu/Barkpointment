@@ -2,11 +2,9 @@ package marjorieTeu.barkpointment.controllers;
 
 import java.security.Principal;
 import java.sql.Date;
-import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.security.core.GrantedAuthority;
@@ -19,7 +17,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import marjorieTeu.barkpointment.beans.Dog;
@@ -34,7 +31,7 @@ public class HomeController {
 		//for logged in user
 		private int acctID=-1;
 		private String username="";
-		
+		private boolean isAdmin = false;
 		
 		// access database through this class
 		private DatabaseAccess db;
@@ -100,13 +97,14 @@ public class HomeController {
 				dataCreated=true;
 				System.out.println("data created");	
 			}
-			
-			
+
 			if (principal != null) {
 				username = principal.getName();
-				acctID = db.getAccountOf(username).getAcctID();
+				Account activeUser = db.getAccountOf(username);
+				acctID = activeUser.getAcctID();
+				isAdmin = activeUser.getAuthority().equalsIgnoreCase("role_admin") ? true : false;
 			}
-			
+
 			model.addAttribute("acctID", acctID);
 			model.addAttribute("username", username);
 			model.addAttribute("sysMessage", "");
@@ -180,8 +178,12 @@ public class HomeController {
 			// give system message
 			model.addAttribute("sysMessage", "Account successfully created");
 			model.addAttribute("alertType", "success");
-
-			return "/login";
+			
+			if(isAdmin) {
+				return "redirect:/profile";
+			}
+			
+			return "/";
 		}
 		
 
@@ -286,10 +288,9 @@ public class HomeController {
 		 */
 		@PostMapping("/addAdog")
 		public String addAdog(@ModelAttribute Dog dog, RedirectAttributes redirectAttrs){
-			int result = 0;
-
+			
 			dog.setOwnerID(acctID);
-			result = db.addDog(dog);
+			db.addDog(dog);
 
 			redirectAttrs.addAttribute("acctID", acctID)
 						.addFlashAttribute("sysMessage", "Add dog successful")
