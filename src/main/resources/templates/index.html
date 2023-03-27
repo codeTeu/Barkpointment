@@ -14,46 +14,104 @@
     <link rel="stylesheet" href="../static/css/bootstrap.css" />
     <link rel="stylesheet" href="../static/css/style.css" />
 
+    <!-- font -->
+    <link href='https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800' rel='stylesheet'
+        type='text/css'>
     <title>Home</title>
+    <style>
+        span {
+            color: #17A2B8;
+        }
+
+        h1 {
+            font-family: 'Montserrat';
+            font-size: 40px;
+        }
+
+        .w100 {
+            font-weight: 100;
+        }
+
+        .w200 {
+            font-weight: 200;
+        }
+
+        .w300 {
+            font-weight: 300;
+        }
+
+        .w400 {
+            font-weight: 400;
+        }
+
+        .w500 {
+            font-weight: 500;
+        }
+
+        .w600 {
+            font-weight: 600;
+        }
+
+        .w700 {
+            font-weight: 700;
+        }
+
+        .w800 {
+            font-weight: 800;
+        }
+
+        .w900 {
+            font-weight: 900;
+        }
+
+        main {
+            background-image: url(images/pexels/dogLion_2.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: right;
+        }
+    </style>
 </head>
 
 <body>
-    <div class="container">
-        <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
-            <a href="/"
-                class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
-                <img src="../static/images/barkpointment_logo.svg" alt="barkpointment-logo" height="40px" />
-            </a>
+    <header class="bg-white">
+        <div class="container">
+            <div class="d-flex flex-wrap justify-content-center py-3">
+                <a href="/"
+                    class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+                    <img src="images/barkpointment_logo.png" alt="barkpointment-logo" height="35px" />
+                </a>
 
-            <ul class="nav nav-pills nav-rad">
-                <li class="nav-item">
-                    <a href="#" class="nav-link active" aria-current="page">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">Pricing</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">FAQs</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">About</a>
-                </li>
-            </ul>
-        </header>
-    </div>
+                <ul class="nav nav-pills">
+                    <li class="nav-item"><a href="#" class="nav-link active" aria-current="page">LOGIN</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">CONTACT</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
 
-    <main>
-        <h2>body</h2>
+    <main class="vh-100 bg-body-secondary d-flex align-items-center pb-5">
+        <div class="container pb-5">
+            <h1 class="w800">VET <span>SCHEDULING</span><br>MADE EASY</h1>
+            <p class="w-50">Barkpointment is an easy to use booking system for your dogs vet appointment. Manage pet
+                profiles, schedules and health history — all in one place.</p>
+
+            <button class="btn btn-lg btn-primary rounded-5 px-5">LOGIN</button>
+            <button class="btn btn-outline-primary btn-lg rounded-5 px-5">SIGN UP</button>
+        </div>
     </main>
 
-    <footer>
-        <h3>footer</h3>
-
-        <!-- script -->
-        <script src="scripts/bootstrap.js"></script>
-        <script src="scripts/jquery.js"></script>
-        <script src="scripts/script.js"></script>
+    <footer class="small p-3 bg-primary text-center text-white fixed-bottom w300">
+        <small>Copyright ©
+            <script>document.write(new Date().getFullYear())</script> Marjorie Teu. All Rights Reserved.
+        </small>
+        </span>
     </footer>
+
+    <!-- script -->
+    <script src="scripts/bootstrap.js"></script>
+    <script src="scripts/jquery.js"></script>
+    <script src="scripts/script.js"></script>
 </body>
 
 </html>
