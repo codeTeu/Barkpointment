@@ -1,5 +1,89 @@
-/* test connection */
+/************************* COLORS *************************/
+:root,
+[data-bs-theme] {
+	--bs-prime: #17a2b8;
+	--bs-prime-dark: #0f94a8;
+	--bs-second: #95E6FF;
+	--bs-accent: #E38C40;
+	--bs-gray-lightest: #EEEEEE;
+	--bs-gray-light: #e3e3e3;
+	--bs-gray-darker: #6C757D;
+	--bs-white: white;
+}
 
-/* body {
-	color: red; 
-} */
+/************************* FONT *************************/
+body {
+	font-family: 'Montserrat';
+}
+
+.w100 {
+	font-weight: 100;
+}
+
+.w200 {
+	font-weight: 200;
+}
+
+.w300 {
+	font-weight: 300;
+}
+
+.w400 {
+	font-weight: 400;
+}
+
+.w500 {
+	font-weight: 500;
+}
+
+.w600 {
+	font-weight: 600;
+}
+
+.w700 {
+	font-weight: 700;
+}
+
+.w800 {
+	font-weight: 800;
+}
+
+.w900 {
+	font-weight: 900;
+}
+
+
+/************************* ELEMENTS *************************/
+/* BUTTON */
+.btn_solid-dark {
+	background-color: var(--bs-prime);
+	color: white;
+	border: 1px solid var(--bs-prime);
+	border-radius: 0;
+}
+
+.btn_solid-dark:hover {
+	background-color: var(--bs-prime-dark);
+	color: var(--bs-white);
+	border: 1px solid var(--bs-prime);
+}
+
+.btn_solid-light {
+	color: var(--bs-prime);
+	border: 1px solid var(--bs-prime);
+	border-radius: 0;
+}
+
+.btn_solid-light:hover {
+	color: var(--bs-prime);
+	border: 1px solid var(--bs-prime);
+	background-color: var(--bs-gray-light);
+}
+
+.btn {
+	border-radius: 0;
+}
+
+.btn_round {
+	border-radius: 5rem;
+}
