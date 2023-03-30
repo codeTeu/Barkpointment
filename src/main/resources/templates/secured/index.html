@@ -2,14 +2,93 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- meta -->
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- css -->
+    <link rel="stylesheet" href="css/bootstrap.css" />
+    <link rel="stylesheet" href="css/style.css" />
+
+    <link rel="stylesheet" href="../../static/css/bootstrap.css" />
+    <link rel="stylesheet" href="../../static/css/style.css" />
+
     <title>BookAppointment</title>
+    <style>
+        main {
+            background-image: url(images/pexels/dogLion_2.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: right;
+            height: 90vh;
+        }
+    </style>
 </head>
 
 <body>
-    <p>bookAppt</p>
+    <header class="bg-white">
+        <div class="container">
+            <div class="d-flex flex-wrap justify-content-center py-3">
+                <a href="/"
+                    class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+                    <img src="images/barkpointment_logo.png" alt="barkpointment-logo" height="35px" />
+                </a>
+
+                <ul class="nav nav-pill nav">
+                    <li class="nav-item"><a href="#" class="nav-link text-danger">LOGOUT</a></li>
+                    <li class="nav-item"><a href="profile" class="nav-link">PROFILE</a></li>
+                    <li class="nav-item"><a href="pets" class="nav-link">PETS</a></li>
+                    <li class="nav-item"><a href="appointments" class="nav-link">APPOINTMENTS</a></li>
+                    <li class="nav-item"><a href="contact" class="nav-link">CONTACT</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <main class="vh-95 w-100">
+        <div class="">
+            <div class="card shadow-sm rounded-0 border-0 w-50">
+                <div class="card-header bg-primary rounded-0 shadow-none">
+                </div>
+                <div class="card-body p-5">
+                    <form action="#" method="post">
+                        <h3 class="card-title w700">BOOK YOUR APPOINTMENT</h3>
+                        <input type="text" class="form-control py-3 bg-light rounded-0 my-2" name="clientID"
+                            id="clientID" placeholder="clientID*" value="John Doe" disabled>
+                        <input type="date" name="schedule" id="schedule" placeholder="YYY-MM-DDD">
+
+                        <input type="password" class="form-control py-3 bg-light rounded-0 my-2" name="password"
+                            id="password" placeholder="Password*">
+                        <br>
+                        <select id="time" name="time">
+                            <option value="10:00AM">10:00AM</option>
+                            <option value="11:00AM">11:00AM</option>
+                        </select>
+                        <p>Reason for the visit?</p>
+                        <textarea name="message" id="message" rows="5" class="w-100"></textarea>
+                        <button type="submit" class="w-100 btn btn-lg btn-primary rounded-0">CREATE</button>
+                    </form>
+                    <br>
+                    <br>
+                    <hr>
+                    <p>Don't have an account? <a href="register" class="">Register</a></p>
+                </div>
+            </div>
+    </main>
+
+    <footer class="small p-3 bg-primary text-center text-white fixed-bottom w300">
+        <small>Copyright ©
+            <script>document.write(new Date().getFullYear())</script> Marjorie Teu. All Rights Reserved.
+        </small>
+        </span>
+    </footer>
+
+    <!-- script -->
+    <script src="scripts/bootstrap.js"></script>
+    <script src="scripts/jquery.js"></script>
+    <script src="scripts/script.js"></script>
 </body>
 
 </html>
