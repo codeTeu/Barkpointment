@@ -2,14 +2,81 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- meta -->
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- css -->
+    <link rel="stylesheet" href="css/bootstrap.css" />
+    <link rel="stylesheet" href="css/style.css" />
+
+    <link rel="stylesheet" href="../../static/css/bootstrap.css" />
+    <link rel="stylesheet" href="../../static/css/style.css" />
     <title>Appointments</title>
 </head>
 
 <body>
-    <p>appt</p>
+    <header class="bg-white">
+        <div class="container">
+            <div class="d-flex flex-wrap justify-content-center py-3">
+                <a href="/"
+                    class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+                    <img src="images/barkpointment_logo.png" alt="barkpointment-logo" height="35px" />
+                </a>
+
+                <ul class="nav nav-pill nav">
+                    <li class="nav-item"><a href="#" class="nav-link text-danger">LOGOUT</a></li>
+                    <li class="nav-item"><a href="profile" class="nav-link">PROFILE</a></li>
+                    <li class="nav-item"><a href="pets" class="nav-link">PETS</a></li>
+                    <li class="nav-item"><a href="appointments" class="nav-link">APPOINTMENTS</a></li>
+                    <li class="nav-item"><a href="contact" class="nav-link">CONTACT</a></li>
+                </ul>
+            </div>
+        </div>
+        <style>
+            table,
+            th,
+            td {
+                border: 1px solid black;
+                border-collapse: collapse;
+                padding: 10px;
+            }
+        </style>
+    </header>
+
+    <main class="text-center bg-light p-5 vh-100">
+        <!-- for testing -->
+        <table class="m-auto">
+            <tr>
+                <th>NAME</th>
+                <th>BIRTHDAY</th>
+                <th>GENDER</th>
+                <th>BREED</th>
+            </tr>
+            <tr>
+                <td>003</td>
+                <td>2021-04-02</td>
+                <td>F</td>
+                <td>Golden Retriever</td>
+            </tr>
+        </table>
+        <br>
+        <div class="">
+            <input type="text" name="dogID" id="dogID" value="003" disabled>
+            <input type="date" name="bday" id="bday" value="2021-04-02" disabled>
+            <input type="text" name="gender" id="gender" value="F" disabled>
+            <input type="text" name="breed" id="breed" value="Golden Retriever" disabled>
+        </div>
+    </main>
+
+
+    <footer class="small p-3 bg-primary text-center text-white fixed-bottom w300">
+        <small>Copyright ©
+            <script>document.write(new Date().getFullYear())</script> Marjorie Teu. All Rights Reserved.
+        </small>
+        </span>
+    </footer>
 </body>
 
 </html>
