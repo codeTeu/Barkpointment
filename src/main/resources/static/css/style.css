@@ -87,3 +87,8 @@ body {
 .btn_round {
 	border-radius: 5rem;
 }
+
+
+.avatar_profile {
+	width: 150px;
+}
