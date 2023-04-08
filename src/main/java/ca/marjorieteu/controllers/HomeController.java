@@ -1,13 +1,21 @@
 package ca.marjorieteu.controllers;
 
+import java.time.LocalDate;
+
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+
+import ca.marjorieteu.beans.Dog;
 
 @Controller
 public class HomeController {
+	private int dogCount = 1;
 
 	@GetMapping("/")
 	public String goHome() {
+
 		return "index";
 	}
 
@@ -42,8 +50,19 @@ public class HomeController {
 	}
 
 	@GetMapping("/addPet")
-	public String goAddPet() {
+	public String goAddPet(Model model) {
+		model.addAttribute("dateToday", LocalDate.now());
+		int ownerIdTemp = 1;
+		model.addAttribute("newDog", new Dog(dogCount, ownerIdTemp)); // test owner id
+		dogCount++;
+		// System.out.println("addpet"); //test redirect
 		return "secured/addPet";
+	}
+
+	@GetMapping("/addPetProcess")
+	public String goAddPetProcess(@ModelAttribute Dog newDog) {
+		System.out.println(newDog.toString()); // test add
+		return ("redirect:/addPet");
 	}
 
 	@GetMapping("/appointments")
