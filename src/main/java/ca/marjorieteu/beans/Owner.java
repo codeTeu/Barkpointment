@@ -19,5 +19,5 @@ public class Owner {
 	private String province;
 	private String postalCode;
 	private String email;
-	private String phone ;
+	private String phone;
 }

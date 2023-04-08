@@ -16,5 +16,11 @@ public class Dog {
 	private String gender;
 	private String bday;
 	private String breed;
-	private int ownerID;
+	private int ownerId;
+
+	public Dog(int dogId, int ownerId) {
+		this.dogId = dogId;
+		this.ownerId = ownerId;
+	}
+
 }
