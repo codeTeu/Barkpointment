@@ -1,5 +1,6 @@
 package ca.marjorieteu.database;
 
+import java.sql.Date;
 import java.util.List;
 
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -51,7 +52,7 @@ public class DatabaseAccess {
 	public List<Dog> getDogList() {
 		String query = "SELECT * FROM dogs";
 		List<Dog> dogList = db.query(query, dogMapper);
-		System.out.println(dogList.toString());
+//		System.out.println(dogList.toString());
 		return dogList;
 	}
 	
@@ -61,7 +62,7 @@ public class DatabaseAccess {
 		MapSqlParameterSource namedParameters = new MapSqlParameterSource();
 		namedParameters.addValue("name", dog.getName())
 					.addValue("gender", dog.getGender())
-					.addValue("birthday", dog.getBirthday())
+					.addValue("birthday",Date.valueOf(dog.getBirthday()))
 					.addValue("breed", dog.getBreed())
 					.addValue("ownerID", dog.getOwnerID());
 

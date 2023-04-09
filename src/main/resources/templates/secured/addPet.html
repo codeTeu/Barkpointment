@@ -43,16 +43,26 @@
 			<div class="card-header bg-primary rounded-0 shadow-none"></div>
 			<div class="card-body p-5">
 				<form action="/addPetProcess" method="get" th:object="${newDog}">
-					<input type="hidden" th:field="*{dogId}" name="dogId"> <input
-						type="hidden" th:field="*{ownerId}" name="ownerId"> <img
+					<!-- <input type="hidden" th:field="*{dogId}" name="dogId">  -->
+					<!-- <input
+						type="hidden" th:field="*{ownerId}" name="ownerId">  -->
+						
+						<img
 						src="images/avatar/dog1.png" alt="petAvatar"
-						class="avatar_profile"> <input type="text"
+						class="avatar_profile"> 
+						
+						<input type="text"
 						th:field="*{name}" name="petName" id="petNameID"
 						placeholder="Name" required
-						class="form-control py-3 bg-light rounded-0 my-2"> <input
-						type="date" th:value="${dateToday}" name="bday" id="bdayID"
+						class="form-control py-3 bg-light rounded-0 my-2"> 
+						
+						<input
+						type="date" th:field="*{birthday}"
+						name="birthday" id="bdayID"
 						placeholder="YYYY-MM-DD" required
-						class="form-control py-3 bg-light rounded-0 my-2"> <select
+						class="form-control py-3 bg-light rounded-0 my-2"> 
+						
+						<select
 						name="gender" id="genderID" required th:field="*{gender}">
 						<!-- <option value="Unknown" selected>Unknown</option> -->
 						<option value="male" selected>Male</option>

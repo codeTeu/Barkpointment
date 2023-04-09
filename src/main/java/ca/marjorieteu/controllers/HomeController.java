@@ -1,7 +1,5 @@
 package ca.marjorieteu.controllers;
 
-import java.sql.Date;
-import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
@@ -28,7 +26,6 @@ public class HomeController {
 		owner1.setEmail("john@gmail.com");
 		owner1.setPhone("6470101010");
 
-		
 		Owner owner2 = new Owner();
 		owner2.setFname("Leah");
 		owner2.setLname("Smith");
@@ -41,17 +38,16 @@ public class HomeController {
 
 		db.addOwner(owner1);
 		db.addOwner(owner2);
-		
-		db.addDog(new Dog("Shiba", "Male", Date.valueOf("2023-02-11"), "Shiba Inu", 1));
-		db.addDog(new Dog("Loki", "Male", Date.valueOf("2015-03-03"), "Border Collie Inu", 2));
-		db.addDog(new Dog("Patch", "Female", Date.valueOf("2021-04-11"), "Pitbull", 1));
+
+		db.addDog(new Dog("Shiba", "Male", "2023-02-11", "Shiba Inu", 1));
+		db.addDog(new Dog("Loki", "Male", "2015-03-03", "Border Collie Inu", 2));
+		db.addDog(new Dog("Patch", "Female", "2021-04-11", "Pitbull", 1));
 
 		this.db = db;
 	}
 
 	@GetMapping("/")
 	public String goHome() {
-		System.out.println(db.getOwnerList().toString());
 		return "index";
 	}
 
@@ -83,25 +79,22 @@ public class HomeController {
 	@GetMapping("/pets")
 	public String goPets(Model model) {
 		List<Dog> dogList = db.getDogList();
-
 		model.addAttribute("dogList", dogList);
 		return "secured/pets";
 	}
 
 	@GetMapping("/addPet")
 	public String goAddPet(Model model) {
-		model.addAttribute("dateToday", LocalDate.now());
-		int dogIdTemp = 1;
-		int ownerIdTemp = 1;
-		model.addAttribute("newDog", new Dog(dogIdTemp, ownerIdTemp)); // test owner id
-		// System.out.println("addpet"); //test redirect
+		Dog newDog = new Dog();
+		model.addAttribute("newDog", newDog);
 		return "secured/addPet";
 	}
 
 	@GetMapping("/addPetProcess")
 	public String goAddPetProcess(@ModelAttribute Dog newDog) {
-		System.out.println(newDog.toString()); // test add
-		return ("redirect:/addPet");
+		newDog.setOwnerID(1);
+		db.addDog(newDog);
+		return ("redirect:/pets");
 	}
 
 	@GetMapping("/appointments")
