@@ -8,14 +8,19 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
 import ca.marjorieteu.beans.Dog;
+import ca.marjorieteu.database.DatabaseAccess;
 
 @Controller
 public class HomeController {
-	private int dogCount = 1;
+	private DatabaseAccess db;
+
+	public HomeController(DatabaseAccess db) {
+		this.db = db;
+	}
 
 	@GetMapping("/")
 	public String goHome() {
-
+		System.out.println(db.getDogs().get(0).toString());		//test db connection
 		return "index";
 	}
 
@@ -52,9 +57,9 @@ public class HomeController {
 	@GetMapping("/addPet")
 	public String goAddPet(Model model) {
 		model.addAttribute("dateToday", LocalDate.now());
+		int dogIdTemp = 1;
 		int ownerIdTemp = 1;
-		model.addAttribute("newDog", new Dog(dogCount, ownerIdTemp)); // test owner id
-		dogCount++;
+		model.addAttribute("newDog", new Dog(dogIdTemp, ownerIdTemp)); // test owner id
 		// System.out.println("addpet"); //test redirect
 		return "secured/addPet";
 	}
