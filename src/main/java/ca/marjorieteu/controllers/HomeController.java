@@ -13,9 +13,19 @@ import ca.marjorieteu.database.DatabaseAccess;
 
 @Controller
 public class HomeController {
+
 	private DatabaseAccess db;
 
+	private boolean dataCreated = false;
+
 	public HomeController(DatabaseAccess db) {
+		this.db = db;
+	}
+
+	/**
+	 * adds data in the database
+	 */
+	public void createData() {
 		Owner owner1 = new Owner();
 		owner1.setFname("John");
 		owner1.setLname("Doe");
@@ -42,40 +52,94 @@ public class HomeController {
 		db.addDog(new Dog("Shiba", "Male", "2023-02-11", "Shiba Inu", 1));
 		db.addDog(new Dog("Loki", "Male", "2015-03-03", "Border Collie Inu", 2));
 		db.addDog(new Dog("Patch", "Female", "2021-04-11", "Pitbull", 1));
-
-		this.db = db;
 	}
 
+	/**
+	 * create data only once before going to the home page
+	 * 
+	 * @return
+	 */
 	@GetMapping("/")
 	public String goHome() {
+		if (dataCreated == false) {
+			createData();
+			dataCreated = true;
+			System.out.println("data created");
+		}
 		return "index";
 	}
 
+	/**
+	 * goes top the login page
+	 * 
+	 * @return
+	 */
 	@GetMapping("/login")
 	public String goLogin() {
 		return "login";
 	}
 
+	/**
+	 * goes to the register page
+	 * 
+	 * @return
+	 */
 	@GetMapping("/register")
 	public String goRegister() {
 		return "register";
 	}
 
+	/**
+	 * goes to the contact page
+	 * 
+	 * @return
+	 */
 	@GetMapping("/contact")
 	public String goContact() {
 		return "contact";
 	}
 
+	/**
+	 * goes to the book appointment page
+	 * 
+	 * @return
+	 */
 	@GetMapping("/bookAppt")
 	public String goBookAppt() {
 		return "secured/index";
 	}
 
+	/**
+	 * goes to the users profile page
+	 * 
+	 * @return
+	 */
 	@GetMapping("/profile")
-	public String goProfile() {
+	public String goProfile(Model model) {
+		model.addAttribute("owner", db.getOwner(1));
 		return "secured/profile";
 	}
 
+	/**
+	 * updates the users data in the db
+	 * 
+	 * @param newOwnerData owner object with the new inputed data
+	 * @return goes back to profile page
+	 */
+	@GetMapping("/profileUpdate")
+	public String goProfileUpdate(@ModelAttribute Owner newOwnerData) {
+		// update profile
+		int result = db.profileUpdate(newOwnerData);
+		System.out.println(result > 0 ? "profile update successfull" : "profile update failed ");
+		return "redirect:/profile";
+	}
+
+	/**
+	 * goes to the pets page
+	 * 
+	 * @param model dogList, passed to the page to be displayed
+	 * @return
+	 */
 	@GetMapping("/pets")
 	public String goPets(Model model) {
 		List<Dog> dogList = db.getDogList();
@@ -83,6 +147,12 @@ public class HomeController {
 		return "secured/pets";
 	}
 
+	/**
+	 * goes to the addPet page
+	 * 
+	 * @param model dog object, passed to the page to get input data
+	 * @return
+	 */
 	@GetMapping("/addPet")
 	public String goAddPet(Model model) {
 		Dog newDog = new Dog();
@@ -90,6 +160,12 @@ public class HomeController {
 		return "secured/addPet";
 	}
 
+	/**
+	 * adds the new dog in the db
+	 * 
+	 * @param newDog dog obj with the input data
+	 * @return goes back to pet page
+	 */
 	@GetMapping("/addPetProcess")
 	public String goAddPetProcess(@ModelAttribute Dog newDog) {
 		newDog.setOwnerID(1);
@@ -97,6 +173,11 @@ public class HomeController {
 		return ("redirect:/pets");
 	}
 
+	/**
+	 * goes to the appointments page
+	 * 
+	 * @return
+	 */
 	@GetMapping("/appointments")
 	public String goAppts() {
 		return "secured/appointments";

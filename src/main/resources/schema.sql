@@ -3,12 +3,12 @@
 
 CREATE TABLE owners(
   ownerID 		INT 	PRIMARY KEY AUTO_INCREMENT,
-  first_name 	VARCHAR(50),
-  last_name 	VARCHAR(50),
+  fname 	VARCHAR(50),
+  lname 	VARCHAR(50),
   address 		VARCHAR(50),
   city 			VARCHAR(50),
   province 		VARCHAR(50),
-  postal_code 	VARCHAR(50),
+  postalCode 	VARCHAR(50),
   email 		VARCHAR(50),
   phone 		VARCHAR(50)
 );
