@@ -11,10 +11,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Appointment {
-	private int apptId;
-	private int ownerId;
-	private int petID;
-	private String reasonOfVisit;
+	private int apptID;
 	private String date;
 	private String time;
+	private int ownerID;
+	private int petID;
+	private String reasonOfVisit;
 }
