@@ -17,4 +17,12 @@ public class Appointment {
 	private int ownerID;
 	private int petID;
 	private String reasonOfVisit;
+
+	public Appointment(String date, String time, int ownerID, int petID, String reasonOfVisit) {
+		this.date = date;
+		this.time = time;
+		this.ownerID = ownerID;
+		this.petID = petID;
+		this.reasonOfVisit = reasonOfVisit;
+	}
 }

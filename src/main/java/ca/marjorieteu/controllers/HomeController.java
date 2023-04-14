@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
+import ca.marjorieteu.beans.Appointment;
 import ca.marjorieteu.beans.Dog;
 import ca.marjorieteu.beans.Owner;
 import ca.marjorieteu.database.DatabaseAccess;
@@ -52,6 +53,10 @@ public class HomeController {
 		db.addDog(new Dog("Shiba", "Male", "2023-02-11", "Shiba Inu", 1));
 		db.addDog(new Dog("Loki", "Male", "2015-03-03", "Border Collie Inu", 2));
 		db.addDog(new Dog("Patch", "Female", "2021-04-11", "Pitbull", 1));
+
+		db.addAppt(new Appointment("2023-4-12", "09:00:00", 1, 1, "checkup"));
+		db.addAppt(new Appointment("2023-1-12", "10:30:00", 1, 2, "anti-rabies shot"));
+		db.addAppt(new Appointment("2023-6-04", "14:00:00", 2, 1, "booster"));
 	}
 
 	/**

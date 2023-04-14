@@ -1,6 +1,7 @@
 package ca.marjorieteu.database;
 
 import java.sql.Date;
+import java.sql.Time;
 import java.util.List;
 
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -33,14 +34,14 @@ public class DatabaseAccess {
 
 	
 	public int addAppt(Appointment appt) {
-		String query = "INSERT INTO appointments(date, time, ownerID, dogID, reasonOfVisit)"
-				+ "VALUES(:date, :time, :ownerID, :dogID, :reasonOfVisit)";
+		String query = "INSERT INTO appointments(date, time, ownerID, dogID, reason)"
+				+ "VALUES(:date, :time, :ownerID, :dogID, :reason)";
 		MapSqlParameterSource namedParameters = new MapSqlParameterSource();
-		namedParameters.addValue("date", appt.getDate())
-						.addValue("time", appt.getTime())
+		namedParameters.addValue("date", Date.valueOf(appt.getDate()))
+						.addValue("time", Time.valueOf(appt.getTime()))
 						.addValue("ownerID", appt.getOwnerID())
 						.addValue("dogID", appt.getPetID())
-						.addValue("reasonOfVisit", appt.getReasonOfVisit());
+						.addValue("reason", appt.getReasonOfVisit());
 
 		int returnValue = db.update(query, namedParameters);
 		return returnValue;
