@@ -34,14 +34,14 @@ public class DatabaseAccess {
 
 	
 	public int addAppt(Appointment appt) {
-		String query = "INSERT INTO appointments(date, time, ownerID, dogID, reason)"
-				+ "VALUES(:date, :time, :ownerID, :dogID, :reason)";
+		String query = "INSERT INTO appointments(date, time, ownerID, dogID, reasonOfVisit)"
+				+ "VALUES(:date, :time, :ownerID, :dogID, :reasonOfVisit)";
 		MapSqlParameterSource namedParameters = new MapSqlParameterSource();
 		namedParameters.addValue("date", Date.valueOf(appt.getDate()))
 						.addValue("time", Time.valueOf(appt.getTime()))
 						.addValue("ownerID", appt.getOwnerID())
-						.addValue("dogID", appt.getPetID())
-						.addValue("reason", appt.getReasonOfVisit());
+						.addValue("dogID", appt.getDogID())
+						.addValue("reasonOfVisit", appt.getReasonOfVisit());
 
 		int returnValue = db.update(query, namedParameters);
 		return returnValue;
