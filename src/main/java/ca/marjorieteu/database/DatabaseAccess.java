@@ -8,6 +8,7 @@ import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import ca.marjorieteu.beans.Appointment;
 import ca.marjorieteu.beans.Dog;
 import ca.marjorieteu.beans.Owner;
 
@@ -16,6 +17,7 @@ public class DatabaseAccess {
 	MapSqlParameterSource namedParameters = new MapSqlParameterSource();
 	BeanPropertyRowMapper<Dog> dogMapper = new BeanPropertyRowMapper<Dog>(Dog.class);
 	BeanPropertyRowMapper<Owner> ownerMapper = new BeanPropertyRowMapper<Owner>(Owner.class);
+	BeanPropertyRowMapper<Appointment> apptMapper = new BeanPropertyRowMapper<Appointment>(Appointment.class);
 
 	private NamedParameterJdbcTemplate db;
 
@@ -23,6 +25,28 @@ public class DatabaseAccess {
 		this.db = db;
 	}
 
+	public List<Appointment> getApptList() {
+		String query = "SELECT * FROM appointments";
+		List<Appointment> apptList = db.query(query, apptMapper);
+		return apptList;
+	}
+
+	
+	public int addAppt(Appointment appt) {
+		String query = "INSERT INTO appointments(date, time, ownerID, dogID, reasonOfVisit)"
+				+ "VALUES(:date, :time, :ownerID, :dogID, :reasonOfVisit)";
+		MapSqlParameterSource namedParameters = new MapSqlParameterSource();
+		namedParameters.addValue("date", appt.getDate())
+						.addValue("time", appt.getTime())
+						.addValue("ownerID", appt.getOwnerID())
+						.addValue("dogID", appt.getPetID())
+						.addValue("reasonOfVisit", appt.getReasonOfVisit());
+
+		int returnValue = db.update(query, namedParameters);
+		return returnValue;
+	}
+	
+	
 	public Owner getOwner(int ownerID) {
 		String query = "SELECT * FROM owners WHERE ownerID= :ownerID";
 		MapSqlParameterSource namedParameters = new MapSqlParameterSource();
@@ -33,6 +57,10 @@ public class DatabaseAccess {
 		return owner;
 	}
 
+	
+	
+	
+	
 	public List<Owner> getOwnerList() {
 		String query = "SELECT * FROM owners";
 		List<Owner> ownerList = db.query(query, ownerMapper);
