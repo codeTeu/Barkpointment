@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
 
 <head>
 <!-- meta -->
@@ -53,16 +53,20 @@ table, th, td {
 		<!-- for testing -->
 		<table class="m-auto">
 			<tr>
-				<th>NAME</th>
-				<th>BIRTHDAY</th>
-				<th>GENDER</th>
-				<th>BREED</th>
+				<th>APPOINTMENT #</th>
+				<th>DATE</th>
+				<th>TIME</th>
+				<th>OWNER ID</th>
+				<th>DOG ID</th>
+				<th>REASON OF VISIT</th>
 			</tr>
-			<tr>
-				<td>003</td>
-				<td>2021-04-02</td>
-				<td>F</td>
-				<td>Golden Retriever</td>
+			<tr th:each="appt: ${apptList}">
+				<td th:text ="${appt.getApptID}"></td>
+				<td th:text ="${appt.getDate}"></td>
+				<td th:text ="${appt.getTime}"></td>
+				<td th:text ="${appt.getOwnerID}"></td>
+				<td th:text ="${appt.getDogID}"></td>
+				<td th:text ="${appt.getReasonOfVisit}"></td>
 			</tr>
 		</table>
 		<br>

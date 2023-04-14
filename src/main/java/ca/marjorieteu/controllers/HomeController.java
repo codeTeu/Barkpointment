@@ -184,7 +184,9 @@ public class HomeController {
 	 * @return
 	 */
 	@GetMapping("/appointments")
-	public String goAppts() {
+	public String goAppts(Model model) {
+		List<Appointment> apptList = db.getApptList();
+		model.addAttribute("apptList", apptList);
 		return "secured/appointments";
 	}
 }
