@@ -32,22 +32,18 @@ public class DatabaseAccess {
 		return apptList;
 	}
 
-	
 	public int addAppt(Appointment appt) {
 		String query = "INSERT INTO appointments(date, time, ownerID, dogID, reasonOfVisit)"
 				+ "VALUES(:date, :time, :ownerID, :dogID, :reasonOfVisit)";
 		MapSqlParameterSource namedParameters = new MapSqlParameterSource();
-		namedParameters.addValue("date", Date.valueOf(appt.getDate()))
-						.addValue("time", Time.valueOf(appt.getTime()))
-						.addValue("ownerID", appt.getOwnerID())
-						.addValue("dogID", appt.getDogID())
-						.addValue("reasonOfVisit", appt.getReasonOfVisit());
+		namedParameters.addValue("date", Date.valueOf(appt.getDate())).addValue("time", Time.valueOf(appt.getTime()))
+				.addValue("ownerID", appt.getOwnerID()).addValue("dogID", appt.getDogID())
+				.addValue("reasonOfVisit", appt.getReasonOfVisit());
 
 		int returnValue = db.update(query, namedParameters);
 		return returnValue;
 	}
-	
-	
+
 	public Owner getOwner(int ownerID) {
 		String query = "SELECT * FROM owners WHERE ownerID= :ownerID";
 		MapSqlParameterSource namedParameters = new MapSqlParameterSource();
@@ -58,10 +54,6 @@ public class DatabaseAccess {
 		return owner;
 	}
 
-	
-	
-	
-	
 	public List<Owner> getOwnerList() {
 		String query = "SELECT * FROM owners";
 		List<Owner> ownerList = db.query(query, ownerMapper);
@@ -86,10 +78,11 @@ public class DatabaseAccess {
 
 		String query = "UPDATE owners SET fname=:fname, lname=:lname, address=:address, city=:city, province=:province, postalCode=:postalCode, email=:email, phone=:phone WHERE ownerID = :ownerID";
 		MapSqlParameterSource namedParameters = new MapSqlParameterSource();
-		namedParameters.addValue("ownerID", owner.getOwnerID()).addValue("fname", owner.getFname()).addValue("lname", owner.getLname())
-				.addValue("address", owner.getAddress()).addValue("city", owner.getCity())
-				.addValue("province", owner.getProvince()).addValue("postalCode", owner.getPostalCode())
-				.addValue("email", owner.getEmail()).addValue("phone", owner.getPhone());
+		namedParameters.addValue("ownerID", owner.getOwnerID()).addValue("fname", owner.getFname())
+				.addValue("lname", owner.getLname()).addValue("address", owner.getAddress())
+				.addValue("city", owner.getCity()).addValue("province", owner.getProvince())
+				.addValue("postalCode", owner.getPostalCode()).addValue("email", owner.getEmail())
+				.addValue("phone", owner.getPhone());
 
 		int returnValue = db.update(query, namedParameters);
 
@@ -100,6 +93,16 @@ public class DatabaseAccess {
 		String query = "SELECT * FROM dogs";
 		List<Dog> dogList = db.query(query, dogMapper);
 //		System.out.println(dogList.toString());
+		return dogList;
+	}
+
+	public List<Dog> getDogListOf(int ownerID) {
+		String query = "SELECT * FROM dogs WHERE ownerID=:ownerID";
+		MapSqlParameterSource namedParameters = new MapSqlParameterSource();
+		namedParameters.addValue("ownerID", ownerID);
+		
+		List<Dog> dogList = db.query(query, namedParameters, dogMapper);
+		
 		return dogList;
 	}
 

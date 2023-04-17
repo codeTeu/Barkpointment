@@ -113,8 +113,11 @@ public class HomeController {
 	public String goBookAppt(Model model) {
 		String ownerName = db.getOwner(1).getFname() + " " + db.getOwner(1).getLname();
 		model.addAttribute("ownerName", ownerName);
-		model.addAttribute("newAppt", new Appointment());
-		model.addAttribute("dogList", db.getDogList());
+		
+		Appointment newAppt = new Appointment();
+		newAppt.setOwnerID(1);
+		model.addAttribute("newAppt", newAppt);
+		model.addAttribute("dogList", db.getDogListOf(1));
 		return "secured/index";
 	}
 
