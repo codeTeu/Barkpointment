@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import ca.marjorieteu.beans.Appointment;
 import ca.marjorieteu.beans.Dog;
@@ -121,6 +122,12 @@ public class HomeController {
 		return "secured/index";
 	}
 
+	@PostMapping("/bookApptProcess")
+	public String goBookApptProcess(@ModelAttribute Appointment newAppt) {
+		System.out.println(newAppt.toString());
+		//db.addAppt(newAppt);
+		return ("redirect:/appointments");
+	}
 	/**
 	 * goes to the users profile page
 	 * 
