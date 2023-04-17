@@ -110,7 +110,11 @@ public class HomeController {
 	 * @return
 	 */
 	@GetMapping("/bookAppt")
-	public String goBookAppt() {
+	public String goBookAppt(Model model) {
+		String ownerName = db.getOwner(1).getFname() + " " + db.getOwner(1).getLname();
+		model.addAttribute("ownerName", ownerName);
+		model.addAttribute("newAppt", new Appointment());
+		model.addAttribute("dogList", db.getDogList());
 		return "secured/index";
 	}
 
@@ -147,8 +151,7 @@ public class HomeController {
 	 */
 	@GetMapping("/pets")
 	public String goPets(Model model) {
-		List<Dog> dogList = db.getDogList();
-		model.addAttribute("dogList", dogList);
+		model.addAttribute("dogList", db.getDogList());
 		return "secured/pets";
 	}
 
@@ -160,8 +163,7 @@ public class HomeController {
 	 */
 	@GetMapping("/addPet")
 	public String goAddPet(Model model) {
-		Dog newDog = new Dog();
-		model.addAttribute("newDog", newDog);
+		model.addAttribute("newDog", new Dog());
 		return "secured/addPet";
 	}
 

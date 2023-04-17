@@ -54,18 +54,23 @@
                 <div class="card-header bg-primary rounded-0 shadow-none">
                 </div>
                 <div class="card-body p-5">
-                    <form action="#" method="post">
+                    <form action="#" method="post" th:object="${newAppt}">
                         <h3 class="card-title w700">BOOK YOUR APPOINTMENT</h3>
-                        <input type="text" class="form-control py-3 bg-light rounded-0 my-2" name="clientID"
-                            id="clientID" placeholder="clientID*" value="John Doe" disabled>
-                        <input type="date" name="schedule" id="schedule" placeholder="YYY-MM-DDD">
+                          <input type="text" class="form-control py-3 bg-light rounded-0 my-2"
+                          th:field="*{ownerID}">
+                        <input type="text" class="form-control py-3 bg-light rounded-0 my-2"
+                          th:value="${ownerName}">
+                        <input type="date" th:field="*{date}" placeholder="YYYY-MM-DD">
 
-                        <input type="password" class="form-control py-3 bg-light rounded-0 my-2" name="password"
-                            id="password" placeholder="Password*">
-                        <br>
-                        <select id="time" name="time">
-                            <option value="10:00AM">10:00AM</option>
-                            <option value="11:00AM">11:00AM</option>
+                        <select id="dogID"  >
+                            <option th:each="dog : ${dogList}" th:text="${dog.name}">dog1</option>
+                        
+                        </select>
+                        <select id="time" th:field="*{time}">
+                            <option value="10:00:00">10:00AM</option>
+                            <option value="11:00:00">11:00AM</option>
+                            <option value="12:00:00">12:00AM</option>
+                            <option value="13:00:00">01:00PM</option>
                         </select>
                         <p>Reason for the visit?</p>
                         <textarea name="message" id="message" rows="5" class="w-100"></textarea>
