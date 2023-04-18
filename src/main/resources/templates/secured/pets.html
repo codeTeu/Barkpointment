@@ -6,27 +6,7 @@
 </head>
 
 <body id="petsBodyID">
-	<header class="bg-white">
-		<div class="container">
-			<div class="d-flex flex-wrap justify-content-center py-3">
-				<a href="/"
-					class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
-					<img src="images/barkpointment_logo.png" alt="barkpointment-logo"
-					height="35px" />
-				</a>
-
-				<ul class="nav nav-pill nav">
-					<li class="nav-item"><a href="/" class="nav-link text-danger">LOGOUT</a></li>
-					<li class="nav-item"><a href="profile" class="nav-link">PROFILE</a></li>
-					<li class="nav-item"><a href="pets" class="nav-link">PETS</a></li>
-					<li class="nav-item"><a href="addPet" class="nav-link">ADD
-							A PET</a></li>
-					<li class="nav-item"><a href="appointments" class="nav-link">APPOINTMENTS</a></li>
-					<li class="nav-item"><a href="contact" class="nav-link">CONTACT</a></li>
-				</ul>
-			</div>
-		</div>
-	</header>
+	<header th:replace="fragments/header :: frag_header_user"></header>
 
 	<main class="text-center bg-light p-5 vh-100">
 		<!-- for testing -->

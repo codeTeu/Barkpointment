@@ -6,21 +6,7 @@
 </head>
 
 <body id="indexBodyID">
-    <header class="bg-white">
-        <div class="container">
-            <div class="d-flex flex-wrap justify-content-center py-3">
-                <a href="/"
-                    class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
-                    <img src="images/barkpointment_logo.png" alt="barkpointment-logo" height="35px" />
-                </a>
-
-                <ul class="nav nav-pills">
-                    <li class="nav-item"><a href="bookAppt" class="nav-link active" aria-current="page">LOGIN</a></li>
-                    <li class="nav-item"><a href="contact" class="nav-link">CONTACT</a></li>
-                </ul>
-            </div>
-        </div>
-    </header>
+	<header th:replace="fragments/header :: frag_header_public"></header>
 
     <main class="vh-100 bg-body-secondary d-flex align-items-center pb-5">
         <div class="container pb-5">
