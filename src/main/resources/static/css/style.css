@@ -101,6 +101,19 @@ table, th, td {
 	padding: 10px;
 }
 
+/************************* BG COLORS *************************/
+
+.bg_solid-gray-lightest {
+	background-color: var(--bs-gray-lightest);
+}
+.bg_solid-gray-light {
+	background-color: var(--bs-gray-light);
+}
+.bg_solid-gray-darker {
+	background-color: var(--bs-gray-darker);
+}
+
+
 
 #indexBodyID main , #createApptBodyID main{
             background-image: url(../images/pexels/dogLion_2.jpg);

@@ -25,7 +25,7 @@
 
                         <select id="dogID" th:field="*{dogID}" >
                             <option th:each="dog : ${dogList}" th:value="${dog.dogID}" th:text="${dog.name}">dog1</option>
-                        
+                
                         </select>
                         <select id="time" th:field="*{time}">
                             <option value="10:00:00">10:00AM</option>
