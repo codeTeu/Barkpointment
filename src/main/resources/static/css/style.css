@@ -92,3 +92,20 @@ body {
 .avatar_profile {
 	width: 150px;
 }
+
+
+
+table, th, td {
+	border: 1px solid black;
+	border-collapse: collapse;
+	padding: 10px;
+}
+
+
+#indexBodyID main , #createApptBodyID main{
+            background-image: url(../images/pexels/dogLion_2.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: right;
+            height: 90vh;
+        }
