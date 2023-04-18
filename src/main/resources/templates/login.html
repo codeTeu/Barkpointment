@@ -1,19 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head th:replace="fragments/head :: frag_head(~{::title})">
     <title>Login</title>
-
-
-    <!-- css -->
-    <link rel="stylesheet" href="css/bootstrap.css" />
-    <link rel="stylesheet" href="css/style.css" />
-    <!-- 
-    <link rel="stylesheet" href="../static/css/bootstrap.css" />
-    <link rel="stylesheet" href="../static/css/style.css" /> -->
 </head>
 
 <body class="vh-100 bg-dark-subtle">
@@ -22,7 +11,6 @@
             <a href="/">
                 <img src="images/barkpointment_logo.png" alt="barkpointment-logo" height="30px" />
             </a>
-        </div>
         </div>
     </header>
 
@@ -45,17 +33,10 @@
                 <hr>
                 <p>Don't have an account? <a href="register" class="">Register</a></p>
             </div>
+            </div>
     </main>
 
-    <footer class="small p-3 bg-primary text-center text-white fixed-bottom w300">
-        <small>Copyright ©
-            <script>document.write(new Date().getFullYear())</script> Marjorie Teu. All Rights Reserved.
-        </small>
-        </span>
-    </footer>
-
-
-
+	<footer th:replace="fragments/footer :: frag_footer"></footer>
 </body>
 
 </html>
