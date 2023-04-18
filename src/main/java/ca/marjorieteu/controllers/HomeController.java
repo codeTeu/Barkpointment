@@ -2,27 +2,36 @@ package ca.marjorieteu.controllers;
 
 import java.util.List;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.client.RestTemplate;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
 
 import ca.marjorieteu.beans.Appointment;
+import ca.marjorieteu.beans.Breed;
 import ca.marjorieteu.beans.Dog;
 import ca.marjorieteu.beans.Owner;
 import ca.marjorieteu.database.DatabaseAccess;
 
 @Controller
+//@RequestMapping(consumes="application/json")
 public class HomeController {
-
+	
+	//DB access
 	private DatabaseAccess db;
-
-	private boolean dataCreated = false;
-
 	public HomeController(DatabaseAccess db) {
 		this.db = db;
 	}
+	
+	//variables
+	private ResponseEntity<Breed[]> apiResponseBreeds = null; // for dog breeds from api
+	private boolean dataCreated = false;
+	
 
 	/**
 	 * adds data in the database
@@ -66,12 +75,15 @@ public class HomeController {
 	 * @return
 	 */
 	@GetMapping("/")
-	public String goHome() {
+	public String goHome(RestTemplate restTemplate) {
 		if (dataCreated == false) {
 			createData();
 			dataCreated = true;
 			System.out.println("data created");
 		}
+
+		apiResponseBreeds = restTemplate.getForEntity("https://api.thedogapi.com/v1/breeds", Breed[].class); //get dog breeds
+
 		return "index";
 	}
 
@@ -114,7 +126,7 @@ public class HomeController {
 	public String goBookAppt(Model model) {
 		String ownerName = db.getOwner(1).getFname() + " " + db.getOwner(1).getLname();
 		model.addAttribute("ownerName", ownerName);
-		
+
 		Appointment newAppt = new Appointment();
 		newAppt.setOwnerID(1);
 		model.addAttribute("newAppt", newAppt);
@@ -125,9 +137,10 @@ public class HomeController {
 	@PostMapping("/bookApptProcess")
 	public String goBookApptProcess(@ModelAttribute Appointment newAppt) {
 		System.out.println(newAppt.toString());
-		//db.addAppt(newAppt);
+		db.addAppt(newAppt);
 		return ("redirect:/appointments");
 	}
+
 	/**
 	 * goes to the users profile page
 	 * 
@@ -170,10 +183,14 @@ public class HomeController {
 	 * 
 	 * @param model dog object, passed to the page to get input data
 	 * @return
+	 * @throws JsonProcessingException
 	 */
 	@GetMapping("/addPet")
 	public String goAddPet(Model model) {
+
+		model.addAttribute("breed", apiResponseBreeds.getBody());
 		model.addAttribute("newDog", new Dog());
+
 		return "secured/addPet";
 	}
 

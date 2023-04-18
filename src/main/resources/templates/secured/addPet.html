@@ -52,29 +52,25 @@
 						class="avatar_profile"> 
 						
 						<input type="text"
-						th:field="*{name}" name="petName" id="petNameID"
+						th:field="*{name}"
 						placeholder="Name" required
 						class="form-control py-3 bg-light rounded-0 my-2"> 
 						
 						<input
 						type="date" th:field="*{birthday}"
-						name="birthday" id="bdayID"
+						
 						placeholder="YYYY-MM-DD" required
 						class="form-control py-3 bg-light rounded-0 my-2"> 
 						
-						<select
-						name="gender" id="genderID" required th:field="*{gender}">
+						<select required th:field="*{gender}">
 						<!-- <option value="Unknown" selected>Unknown</option> -->
 						<option value="male" selected>Male</option>
 						<option value="female">Female</option>
 					</select> 
 					
-					
-					<select name="breed" id="breedID" th:field="*{breed}">
-						<option value="Shihtzu" selected>Shihtzu</option>
-						<option value="GoldenRetriever">Golden Retriever</option>
-						<option value="Dalmatian">Dalmatian</option>
-						<option value="SiberianHusky">Siberian Husky</option>
+					<select  th:field="*{breed}">
+						<option th:each ="breed : ${breed}" th:value="${breed.name}" th:text="${breed.name}">temp</option>
+				
 					</select>
 					<button type="submit"
 						class="w-100 btn btn-lg btn-primary rounded-0">ADD</button>
@@ -84,13 +80,14 @@
 		</div>
 	</main>
 
+
 	<footer
 		class="small p-3 bg-primary text-center text-white fixed-bottom w300">
 		<small>Copyright © <script>
 			document.write(new Date().getFullYear())
 		</script>
 			Marjorie Teu. All Rights Reserved.
-		</small> </span>
+		</small>
 	</footer>
 </body>
 
