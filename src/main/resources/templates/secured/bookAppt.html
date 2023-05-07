@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+
+<head th:replace="fragments/head :: frag_head(~{::title})">
+<title>BookAppointment</title>
+</head>
+
+<body id="createApptBodyID">
+
+	<header th:replace="fragments/header :: frag_header_user"></header>
+
+    <main class="vh-95 w-100">
+    
+            <div class="card shadow-sm rounded-0 border-0 w-50">
+                <div class="card-header bg-primary rounded-0 shadow-none">
+                </div>
+                <div class="card-body p-5">
+                    <form action="/bookApptProcess" method="post" th:object="${newAppt}">
+                        <h3 class="card-title w700">BOOK YOUR APPOINTMENT</h3>
+                          <input type="text" class="form-control py-3 bg-light rounded-0 my-2"
+                          th:field="*{ownerID}">
+                        <input type="text" class="form-control py-3 bg-light rounded-0 my-2"
+                          th:value="${ownerName}">
+                        <input type="date" th:field="*{date}" placeholder="YYYY-MM-DD">
+
+                        <select id="dogID" th:field="*{dogID}" >
+                            <option th:each="dog : ${dogList}" th:value="${dog.dogID}" th:text="${dog.name}">dog1</option>
+                
+                        </select>
+                        <select id="time" th:field="*{time}">
+                            <option value="10:00:00">10:00AM</option>
+                            <option value="11:00:00">11:00AM</option>
+                            <option value="12:00:00">12:00AM</option>
+                            <option value="01:00:00">01:00PM</option>
+                        </select>
+                        <p>Reason for the visit?</p>
+                        <textarea th:field="*{reasonOfVisit}" rows="5" class="w-100"></textarea>
+                        <button type="submit" class="w-100 btn btn-lg btn-primary rounded-0">CREATE</button>
+                    </form>
+                    <br>
+                    <br>
+                    <hr>
+                    <p>Don't have an account? <a href="register" class="">Register</a></p>
+                </div>
+            </div>
+    </main>
+
+	<footer th:replace="fragments/footer :: frag_footer"></footer>
+</body>
+
+</html>

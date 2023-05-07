@@ -131,7 +131,7 @@ public class HomeController {
 		newAppt.setOwnerID(1);
 		model.addAttribute("newAppt", newAppt);
 		model.addAttribute("dogList", db.getDogListOf(1));
-		return "secured/index";
+		return "secured/bookAppt";
 	}
 
 	@PostMapping("/bookApptProcess")
