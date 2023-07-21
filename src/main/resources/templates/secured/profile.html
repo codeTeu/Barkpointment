@@ -2,37 +2,69 @@
 <html lang="en" xmlns:th="https://www.thymeleaf.org">
 
 <head th:replace="fragments/head :: frag_head(~{::title})">
-<title>Profile</title>
+	<title>Profile</title>
 </head>
 
-<body>
+<body id="profilePage">
 	<header th:replace="fragments/header :: frag_header_user"></header>
-	
-	<main class="bg-light text-center p-5">
+
+	<main class="bg-light p-5">
 		<div class="card mb-4 shadow-sm rounded-0 border-0 ">
 			<div class="card-header bg-primary rounded-0 shadow-none"></div>
 
 			<div class="card-body p-5">
 				<form action="/profileUpdate" method="get" th:object="${owner}">
-					<input type="text" th:field="*{ownerID}">
-					<img src="images/avatar/person1.png" alt="profilePic" class="avatar_profile">
-					<input type="text" class="form-control py-3 bg-light rounded-0 my-2" th:field="*{fname}">
-					<input type="text" class="form-control py-3 bg-light rounded-0 my-2" th:field="*{lname}">
-					<input type="text" class="form-control py-3 bg-light rounded-0 my-2" th:field="*{address}"
-						value="101 Temp St.">
-					<input type="text" class="form-control py-3 bg-light rounded-0 my-2" th:field="*{city}"
-						value="Toronto">
-					<input type="text" class="form-control py-3 bg-light rounded-0 my-2" th:field="*{province}"
-						value="ON">
-					<input type="text" class="form-control py-3 bg-light rounded-0 my-2" th:field="*{postalCode}"
-						value="M2L 4R7">
-					<input type="email" class="form-control py-3 bg-light rounded-0 my-2" th:field="*{email}"
-						value="jdoe@gmail.com">
-					<input type="text" class="form-control py-3 bg-light rounded-0 my-2" th:field="*{phone}"
-						value="647-000-000">
+					<input type="hidden" th:field="*{ownerID}">
 
+					<div class="text-center"> 
+						<img src="images/avatar/person1.png" alt="profilePic" class="avatar_profile">
+					</div>
+					<br>
+					
+					<div class="grid-container">
+						<div>
+							<label>First Name</label></br>
+							<input type="text" class="form-control formInputSelectStyle" th:field="*{fname}">
+						</div>
+						<div>
+							<label>Last Name</label></br>
+							<input type="text" class="form-control formInputTextStyle" th:field="*{lname}">
+						</div>
+						<div>
+							<label>Address</label></br>
+							<input type="text" class="form-control formInputTextStyle" th:field="*{address}"
+								value="101 Temp St.">
+						</div>
+						<div>
+							<label>City</label></br>
+							<input type="text" class="form-control formInputTextStyle" th:field="*{city}"
+								value="Toronto">
+						</div>
+						<div>
+							<label>Province</label></br>
+							<input type="text" class="form-control formInputTextStyle" th:field="*{province}"
+								value="ON">
+						</div>
+						<div>
+							<label>Postal Code</label></br>
+							<input type="text" class="form-control formInputTextStyle" th:field="*{postalCode}"
+								value="M2L 4R7">
+						</div>
+						<div>
+							<label>Email</label></br>
+							<input type="email" class="form-control formInputTextStyle" th:field="*{email}"
+								value="jdoe@gmail.com">
+						</div>
+						<div>
+							<label>Phone</label></br>
+							<input type="text" class="form-control formInputTextStyle" th:field="*{phone}"
+								value="647-000-000">
+						</div>
+					</div>
+					<br>
 					<button type="submit" class="w-100 btn btn-lg btn-primary rounded-0">UPDATE</button>
 					<br>
+
 
 				</form>
 			</div>
