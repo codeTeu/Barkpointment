@@ -134,7 +134,8 @@ table, th, td {
 }
 
 
-#createApptBodyID .grid-container {
+#createApptBodyPage .grid-container,
+#addPetPage .grid-container {
     display: grid;
     grid-template-columns: auto auto;
     row-gap:10px;
