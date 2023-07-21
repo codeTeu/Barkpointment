@@ -1,116 +1,117 @@
 /************************* COLORS *************************/
 :root,
 [data-bs-theme] {
-	--bs-prime: #17a2b8;
-	--bs-prime-dark: #0f94a8;
-	--bs-second: #95E6FF;
-	--bs-accent: #E38C40;
-	--bs-gray-lightest: #EEEEEE;
-	--bs-gray-light: #e3e3e3;
-	--bs-gray-darker: #6C757D;
-	--bs-white: white;
+    --bs-prime: #17a2b8;
+    --bs-prime-dark: #0f94a8;
+    --bs-second: #95E6FF;
+    --bs-second-light: #f1fcff;
+    --bs-accent: #E38C40;
+    --bs-gray-lightest: #EEEEEE;
+    --bs-gray-light: #e3e3e3;
+    --bs-gray-darker: #6C757D;
+    --bs-white: white;
 }
 
 /************************* FONT *************************/
 body {
-	font-family: 'Montserrat';
+    font-family: 'Montserrat';
 }
 
 .w100 {
-	font-weight: 100;
+    font-weight: 100;
 }
 
 .w200 {
-	font-weight: 200;
+    font-weight: 200;
 }
 
 .w300 {
-	font-weight: 300;
+    font-weight: 300;
 }
 
 .w400 {
-	font-weight: 400;
+    font-weight: 400;
 }
 
 .w500 {
-	font-weight: 500;
+    font-weight: 500;
 }
 
 .w600 {
-	font-weight: 600;
+    font-weight: 600;
 }
 
 .w700 {
-	font-weight: 700;
+    font-weight: 700;
 }
 
 .w800 {
-	font-weight: 800;
+    font-weight: 800;
 }
 
 .w900 {
-	font-weight: 900;
+    font-weight: 900;
 }
 
 
 /************************* ELEMENTS *************************/
 /* BUTTON */
 .btn_solid-dark {
-	background-color: var(--bs-prime);
-	color: white;
-	border: 1px solid var(--bs-prime);
-	border-radius: 0;
+    background-color: var(--bs-prime);
+    color: white;
+    border: 1px solid var(--bs-prime);
+    border-radius: 0;
 }
 
 .btn_solid-dark:hover {
-	background-color: var(--bs-prime-dark);
-	color: var(--bs-white);
-	border: 1px solid var(--bs-prime);
+    background-color: var(--bs-prime-dark);
+    color: var(--bs-white);
+    border: 1px solid var(--bs-prime);
 }
 
 .btn_solid-light {
-	color: var(--bs-prime);
-	border: 1px solid var(--bs-prime);
-	border-radius: 0;
+    color: var(--bs-prime);
+    border: 1px solid var(--bs-prime);
+    border-radius: 0;
 }
 
 .btn_solid-light:hover {
-	color: var(--bs-prime);
-	border: 1px solid var(--bs-prime);
-	background-color: var(--bs-gray-light);
+    color: var(--bs-prime);
+    border: 1px solid var(--bs-prime);
+    background-color: var(--bs-gray-light);
 }
 
 .btn {
-	border-radius: 0;
+    border-radius: 0;
 }
 
 .btn_round {
-	border-radius: 5rem;
+    border-radius: 5rem;
 }
 
 
 .avatar_profile {
-	width: 150px;
+    width: 150px;
 }
 
 
 
 table, th, td {
-	border: 1px solid black;
-	border-collapse: collapse;
-	padding: 10px;
+    border: 1px solid black;
+    border-collapse: collapse;
+    padding: 10px;
 }
 
 /************************* BG COLORS *************************/
 
 .bg_solid-gray-lightest {
-	background-color: var(--bs-gray-lightest);
+    background-color: var(--bs-gray-lightest);
 }
 .bg_solid-gray-light {
-	background-color: var(--bs-gray-light);
+    background-color: var(--bs-gray-light);
 }
 .bg_solid-gray-darker {
-	background-color: var(--bs-gray-darker);
+    background-color: var(--bs-gray-darker);
 }
 
 
@@ -122,3 +123,26 @@ table, th, td {
             background-position: right;
             height: 90vh;
         }
+
+
+/************************* input boxes *************************/
+
+.formInputTextStyle, .formInputSelectStyle{
+    background-color: var(--bs-second-light);
+    border:none;
+    border-radius:0;
+}
+
+
+#createApptBodyID .grid-container {
+    display: grid;
+    grid-template-columns: auto auto;
+    row-gap:10px;
+    column-gap:20px;
+  }
+
+  /* @media only screen and (max-device-width: 780px) {
+    #createApptBodyID .grid-container {
+        grid-template-columns: auto;
+      }
+  } */
