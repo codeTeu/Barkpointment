@@ -13,7 +13,7 @@
 }
 
 /************************* FONT *************************/
-body {
+html {
 	font-family: 'Montserrat';
 }
 
@@ -120,8 +120,8 @@ td {
 
 
 
-#indexBodyID main,
-#createApptBodyID main {
+#indexPage main,
+#createApptPage main {
 	background-image: url(../images/pexels/dogLion_2.jpg);
 	background-repeat: no-repeat;
 	background-size: cover;
@@ -164,4 +164,14 @@ td {
 #createApptBodyPage #ownerName{
  pointer-events: none;
  background-color: whitesmoke;
+}
+
+#indexPage span{
+	color:  var(--bs-prime);
+}
+
+
+.text_title {
+	font-weight: 900;
+	font-size:60px;
 }
