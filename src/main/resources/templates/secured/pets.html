@@ -2,15 +2,15 @@
 <html lang="en" xmlns:th="https://www.thymeleaf.org">
 
 <head th:replace="fragments/head :: frag_head(~{::title})">
-<title>Pets</title>
+	<title>Pets</title>
 </head>
 
-<body id="petsBodyID">
+<body id="petsPage">
 	<header th:replace="fragments/header :: frag_header_user"></header>
 
-	<main class="text-center bg-light p-5 vh-100">
+	<main class=" p-5 vh-100">
 		<!-- for testing -->
-		<table class="m-auto">
+		<table class="m-auto text-center">
 			<tr>
 				<th>DOG ID</th>
 				<th>NAME</th>
@@ -28,14 +28,54 @@
 				<td th:text="${dog.ownerID}">00</td>
 			</tr>
 		</table>
-		<br><!-- 
-		<div class="">
-			<input type="text" name="dogID" id="dogID" value="003" disabled>
-			<input type="date" name="bday" id="bday" value="2021-04-02" disabled>
-			<input type="text" name="gender" id="gender" value="F" disabled>
-			<input type="text" name="breed" id="breed" value="Golden Retriever"
-				disabled>
-		</div> -->
+		<br>
+
+
+		<div class="card mb-4 shadow-sm rounded-0 border-0" th:each="dog : ${dogList}">
+
+			<form action="/addPetProcess" method="get" class="grid-container-parent">
+				<div class="input-group p-3">
+					<img src="images/avatar/dog1.png" alt="petAvatar" class="avatar_pets">
+				</div>
+
+				<div class="m-auto p-2">
+					<span class="text_form_dogName" th:text="${dog.name}">DOG NAME</span>
+					<div class="input-group">
+						<div class="grid-container-child">
+							<div class="input-group">
+								<img src="images/icons/collar_2.svg">
+								<input type="text" class="form-control formInputTextStyle" th:value="${dog.dogID}">
+							</div>
+
+							<div class="input-group">
+								<img src="images/icons/cake.svg">
+								<input type="text" class="form-control formInputSelectStyle"th:value="${dog.birthday}">
+							</div>
+
+							<div class="input-group">
+								<img src="images/icons/gender.svg">
+								<input type="text" class="form-control formInputTextStyle" th:value="${dog.gender}">
+
+							</div>
+
+							<div class="input-group">
+								<img src="images/icons/dog.svg">
+								<input type="text" class="form-control formInputSelectStyle" th:value="${dog.breed}">
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="input-group">
+					<button type="submit" class="w-100 btn btn-lg btn-primary rounded-0">
+						<img src="images/icons/medical.svg">
+					</button>
+				</div>
+
+
+			</form>
+
+		</div>
 	</main>
 
 	<footer th:replace="fragments/footer :: frag_footer"></footer>
