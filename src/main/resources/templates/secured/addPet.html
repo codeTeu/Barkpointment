@@ -37,7 +37,7 @@
 
 						<div class="input-group">
 							<img src="images/icons/gender.svg">
-							<select required th:field="*{gender}" class="form-control formInputSelectStyle">
+							<select required th:field="*{gender}" class="form-select formInputSelectStyle">
 								<!-- <option value="Unknown" selected>Unknown</option> -->
 								<option value="male" selected>Male</option>
 								<option value="female">Female</option>
@@ -46,7 +46,7 @@
 
 						<div class="input-group">
 							<img src="images/icons/dog.svg">
-							<select th:field="*{breed}" class="form-control formInputSelectStyle">
+							<select th:field="*{breed}" class="form-select formInputSelectStyle">
 								<option th:each="breed : ${breed}" th:value="${breed.name}" th:text="${breed.name}">temp
 								</option>
 							</select>

@@ -160,3 +160,8 @@ td {
 	row-gap: 10px;
 	column-gap: 20px;
 }
+
+#createApptBodyPage #ownerName{
+ pointer-events: none;
+ background-color: whitesmoke;
+}
