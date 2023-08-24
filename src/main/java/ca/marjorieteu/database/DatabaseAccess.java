@@ -32,12 +32,25 @@ public class DatabaseAccess {
 		return apptList;
 	}
 
-	public int addAppt(Appointment appt) {
-		String query = "INSERT INTO appointments(date, time, ownerID, dogID, reasonOfVisit)"
-				+ "VALUES(:date, :time, :ownerID, :dogID, :reasonOfVisit)";
+	public List<Appointment> getApptListOf(int ownerID) {
+		String query = "SELECT * FROM appointments WHERE ownerID=:ownerID";
 		MapSqlParameterSource namedParameters = new MapSqlParameterSource();
-		namedParameters.addValue("date", Date.valueOf(appt.getDate())).addValue("time", Time.valueOf(appt.getTime()))
-				.addValue("ownerID", appt.getOwnerID()).addValue("dogID", appt.getDogID())
+		namedParameters.addValue("ownerID", ownerID);
+		
+		List<Appointment> apptList = db.query(query, namedParameters, apptMapper);
+		
+		return apptList;
+	}
+	
+	public int addAppt(Appointment appt) {
+		String query = "INSERT INTO appointments(date, time, ownerID, dogID, dogName,reasonOfVisit)"
+				+ "VALUES(:date, :time, :ownerID, :dogID, :dogName,:reasonOfVisit)";
+		MapSqlParameterSource namedParameters = new MapSqlParameterSource();
+		namedParameters.addValue("date", Date.valueOf(appt.getDate()))
+				.addValue("time", Time.valueOf(appt.getTime()))
+				.addValue("ownerID", appt.getOwnerID())
+				.addValue("dogID", appt.getDogID())
+				.addValue("dogName", appt.getDogName())
 				.addValue("reasonOfVisit", appt.getReasonOfVisit());
 
 		int returnValue = db.update(query, namedParameters);
@@ -95,6 +108,8 @@ public class DatabaseAccess {
 //		System.out.println(dogList.toString());
 		return dogList;
 	}
+	
+	
 
 	public List<Dog> getDogListOf(int ownerID) {
 		String query = "SELECT * FROM dogs WHERE ownerID=:ownerID";
@@ -104,6 +119,16 @@ public class DatabaseAccess {
 		List<Dog> dogList = db.query(query, namedParameters, dogMapper);
 		
 		return dogList;
+	}
+	
+	public Dog getDogByID(int dogID) {
+		String query = "SELECT * FROM dogs WHERE dogID=:dogID";
+		MapSqlParameterSource namedParameters = new MapSqlParameterSource();
+		namedParameters.addValue("dogID", dogID);
+		
+		Dog dog = db.query(query, namedParameters, dogMapper).get(0);
+		System.out.println(dog.toString());
+		return dog;
 	}
 
 	public int addDog(Dog dog) {

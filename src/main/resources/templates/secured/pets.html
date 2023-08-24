@@ -5,12 +5,15 @@
 	<title>Pets</title>
 </head>
 
-<body id="petsPage">
+<body id="petsPage" >
 	<header th:replace="fragments/header :: frag_header_user"></header>
 
-	<main class=" p-5 vh-100">
-		<!-- for testing -->
-		<table class="m-auto text-center">
+
+	<main class=" p-5 vh-100 bg-light">
+		<h1 class="text_form_title">PETS</h1>
+		<br>
+	<!--	for testing -->
+<!--		<table class="m-auto text-center">
 			<tr>
 				<th>DOG ID</th>
 				<th>NAME</th>
@@ -28,7 +31,7 @@
 				<td th:text="${dog.ownerID}">00</td>
 			</tr>
 		</table>
-		<br>
+		<br>-->
 
 
 		<div class="card mb-4 shadow-sm rounded-0 border-0" th:each="dog : ${dogList}">
@@ -55,7 +58,6 @@
 							<div class="input-group">
 								<img src="images/icons/gender.svg">
 								<input type="text" class="form-control formInputTextStyle" th:value="${dog.gender}">
-
 							</div>
 
 							<div class="input-group">
@@ -71,7 +73,6 @@
 						<img src="images/icons/medical.svg">
 					</button>
 				</div>
-
 
 			</form>
 

@@ -5,37 +5,37 @@
 <title>Appointments</title>
 </head>
 
-<body>
+<body id="apptPage">
 	<header th:replace="fragments/header :: frag_header_user"></header>
 
 	<main class="text-center bg-light p-5 vh-100">
-		<!-- for testing -->
+		<h1 class="text_form_title">APPOINTMENTS</h1>
+		<br>
 		<table class="m-auto">
 			<tr>
-				<th>APPOINTMENT #</th>
 				<th>DATE</th>
 				<th>TIME</th>
-				<th>OWNER ID</th>
 				<th>DOG ID</th>
+				<th>DOG NAME</th>
 				<th>REASON OF VISIT</th>
 			</tr>
-			<tr th:each="appt: ${apptList}">
-				<td th:text ="${appt.getApptID}"></td>
+			<tr th:each="appt: ${apptList} ">
 				<td th:text ="${appt.getDate}"></td>
 				<td th:text ="${appt.getTime}"></td>
-				<td th:text ="${appt.getOwnerID}"></td>
 				<td th:text ="${appt.getDogID}"></td>
+				<td th:text ="${appt.getDogName}"></td>
 				<td th:text ="${appt.getReasonOfVisit}"></td>
 			</tr>
 		</table>
+		
 		<br>
-		<div class="">
+<!--		<div class="">
 			<input type="text" name="dogID" id="dogID" value="003" disabled>
 			<input type="date" name="bday" id="bday" value="2021-04-02" disabled>
 			<input type="text" name="gender" id="gender" value="F" disabled>
 			<input type="text" name="breed" id="breed" value="Golden Retriever"
 				disabled>
-		</div>
+		</div>-->
 	</main>
 
 

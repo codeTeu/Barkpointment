@@ -5,10 +5,12 @@
 	<title>AddPet</title>
 </head>
 
-<body id="addPetPage">
+<body id="addPetPage" class="bg-light">
 	<header th:replace="fragments/header :: frag_header_user"></header>
 
-	<main class="bg-light text-center p-5">
+	<main class="text-center p-5">
+		<h1 class="text_form_title">ADD A PET</h1>
+		<br>
 		<div class="card mb-4 shadow-sm rounded-0 border-0 w-75 m-auto">
 			<div class="card-header bg-primary rounded-0 shadow-none"></div>
 			<div class="card-body p-5">
@@ -16,7 +18,7 @@
 					<!-- <input type="hidden" th:field="*{dogId}" name="dogId">  -->
 					<!-- <input
 						type="hidden" th:field="*{ownerId}" name="ownerId">  -->
-					<h3 class="text_form_title">ADD A PET</h3>
+					<!--<h3 class="text_form_title">ADD A PET</h3>-->
 					<img src="images/avatar/dog1.png" alt="petAvatar" class="avatar_profile">
 
 					<br>

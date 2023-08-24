@@ -1,5 +1,6 @@
 package ca.marjorieteu.controllers;
 
+import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.http.ResponseEntity;
@@ -31,6 +32,7 @@ public class HomeController {
 	//variables
 	private ResponseEntity<Breed[]> apiResponseBreeds = null; // for dog breeds from api
 	private boolean dataCreated = false;
+	private int activeUserID;
 	
 
 	/**
@@ -38,7 +40,7 @@ public class HomeController {
 	 */
 	public void createData() {
 		Owner owner1 = new Owner();
-		owner1.setFname("John");
+		owner1.setFname("Jane");
 		owner1.setLname("Doe");
 		owner1.setAddress("222 Weston St");
 		owner1.setCity("Toronto");
@@ -48,7 +50,7 @@ public class HomeController {
 		owner1.setPhone("6470101010");
 
 		Owner owner2 = new Owner();
-		owner2.setFname("Leah");
+		owner2.setFname("John");
 		owner2.setLname("Smith");
 		owner2.setAddress("123 Temp St");
 		owner2.setCity("Toronto");
@@ -64,9 +66,9 @@ public class HomeController {
 		db.addDog(new Dog("Loki", "Male", "2015-03-03", "Border Collie Inu", 2));
 		db.addDog(new Dog("Patch", "Female", "2021-04-11", "Pitbull", 1));
 
-		db.addAppt(new Appointment("2023-4-12", "09:00:00", 1, 1, "checkup"));
-		db.addAppt(new Appointment("2023-1-12", "10:30:00", 1, 2, "anti-rabies shot"));
-		db.addAppt(new Appointment("2023-6-04", "14:00:00", 2, 1, "booster"));
+		db.addAppt(new Appointment("2023-3-12", "09:00:00", 1, 1, "Shiba", "checkup"));
+		db.addAppt(new Appointment("2023-4-24", "10:30:00", 1, 3, "Patch", "anti-rabies shot"));
+		db.addAppt(new Appointment("2023-6-04", "14:00:00", 2, 2, "Loki", "booster"));
 	}
 
 	/**
@@ -82,6 +84,8 @@ public class HomeController {
 			System.out.println("data created");
 		}
 
+		activeUserID=1;
+		
 		apiResponseBreeds = restTemplate.getForEntity("https://api.thedogapi.com/v1/breeds", Breed[].class); //get dog breeds
 
 		return "index";
@@ -124,20 +128,26 @@ public class HomeController {
 	 */
 	@GetMapping("/bookAppt")
 	public String goBookAppt(Model model) {
-		String ownerName = db.getOwner(1).getFname() + " " + db.getOwner(1).getLname();
+		String ownerName = db.getOwner(activeUserID).getFname() + " " + db.getOwner(activeUserID).getLname();
 		model.addAttribute("ownerName", ownerName);
 
 		Appointment newAppt = new Appointment();
-		newAppt.setOwnerID(1);
+		newAppt.setOwnerID(activeUserID);
 		model.addAttribute("newAppt", newAppt);
-		model.addAttribute("dogList", db.getDogListOf(1));
+		model.addAttribute("dogList", db.getDogListOf(activeUserID));
 		return "secured/bookAppt";
 	}
 
 	@PostMapping("/bookApptProcess")
 	public String goBookApptProcess(@ModelAttribute Appointment newAppt) {
 		System.out.println(newAppt.toString());
+		
+		String dogName = db.getDogByID(newAppt.getDogID()).getName();
+		newAppt.setDogName(dogName);
+		System.out.println(newAppt.toString());
 		db.addAppt(newAppt);
+		
+		
 		return ("redirect:/appointments");
 	}
 
@@ -174,7 +184,7 @@ public class HomeController {
 	 */
 	@GetMapping("/pets")
 	public String goPets(Model model) {
-		model.addAttribute("dogList", db.getDogList());
+		model.addAttribute("dogList", db.getDogListOf(activeUserID));
 		return "secured/pets";
 	}
 
@@ -190,7 +200,7 @@ public class HomeController {
 
 		model.addAttribute("breed", apiResponseBreeds.getBody());
 		model.addAttribute("newDog", new Dog());
-
+		
 		return "secured/addPet";
 	}
 
@@ -202,7 +212,7 @@ public class HomeController {
 	 */
 	@GetMapping("/addPetProcess")
 	public String goAddPetProcess(@ModelAttribute Dog newDog) {
-		newDog.setOwnerID(1);
+		newDog.setOwnerID(activeUserID);
 		db.addDog(newDog);
 		return ("redirect:/pets");
 	}
@@ -214,8 +224,10 @@ public class HomeController {
 	 */
 	@GetMapping("/appointments")
 	public String goAppts(Model model) {
-		List<Appointment> apptList = db.getApptList();
+		List<Appointment> apptList = db.getApptListOf(activeUserID);		
+	
 		model.addAttribute("apptList", apptList);
+		
 		return "secured/appointments";
 	}
 }

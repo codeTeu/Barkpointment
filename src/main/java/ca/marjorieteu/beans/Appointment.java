@@ -16,6 +16,7 @@ public class Appointment {
 	private String time;
 	private int ownerID;
 	private int dogID;
+	private String dogName;
 	private String reasonOfVisit;
 
 	public Appointment(String date, String time, int ownerID, int dogID, String reasonOfVisit) {
@@ -23,6 +24,15 @@ public class Appointment {
 		this.time = time;
 		this.ownerID = ownerID;
 		this.dogID = dogID;
+		this.reasonOfVisit = reasonOfVisit;
+	}
+	
+	public Appointment(String date, String time, int ownerID, int dogID, String dogName, String reasonOfVisit) {
+		this.date = date;
+		this.time = time;
+		this.ownerID = ownerID;
+		this.dogID = dogID;
+		this.dogName = dogName;
 		this.reasonOfVisit = reasonOfVisit;
 	}
 }

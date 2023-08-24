@@ -213,6 +213,14 @@ td {
 	margin-right:30px;
 }
 
-#petsPage main{
-	background-color: var(--bs-gray-light);
+#apptPage table{
+	width:100%;
 }
+
+#apptPage table th{
+	background-color:var(--bs-prime);
+	color:white
+}
+/*#petsPage body{
+	background-color: var(--bs-gray-light);
+}*/

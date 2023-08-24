@@ -32,6 +32,7 @@ CREATE TABLE appointments(
   time 			TIME,
   ownerID		INT,
   dogID 		INT,
+  dogName		VARCHAR(100),
   reasonOfVisit 		VARCHAR(300),
   
   FOREIGN KEY  (ownerID) REFERENCES owners(ownerID),
