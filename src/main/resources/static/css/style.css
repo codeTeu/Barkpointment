@@ -171,10 +171,15 @@ td {
 	column-gap: 20px;
 }
 
-#createApptBodyPage #ownerName{
+#createApptBodyPage #ownerName,
+#profilePage #fname,
+#profilePage #lname
+{
  pointer-events: none;
  background-color: whitesmoke;
 }
+
+
 
 #indexPage span{
 	color:  var(--bs-prime);
